@@ -1,5 +1,5 @@
 //
-//  FCSecondViewController.h
+//  FCArtistsViewController.h
 //  Forecast
 //
 //  Created by Dan Bretl on 12/4/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FCSecondViewController : UIViewController
+@interface FCArtistsViewController : UIViewController
 
 @end

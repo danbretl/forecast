@@ -1,5 +1,5 @@
 //
-//  FCFirstViewController.h
+//  FCMapViewController.h
 //  Forecast
 //
 //  Created by Dan Bretl on 12/4/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FCFirstViewController : UIViewController
+@interface FCMapViewController : UIViewController
 
 @end

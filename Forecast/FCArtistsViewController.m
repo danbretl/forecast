@@ -1,18 +1,18 @@
 //
-//  FCFirstViewController.m
+//  FCArtistsViewController.m
 //  Forecast
 //
 //  Created by Dan Bretl on 12/4/12.
 //  Copyright (c) 2012 Dan Bretl. All rights reserved.
 //
 
-#import "FCFirstViewController.h"
+#import "FCArtistsViewController.h"
 
-@interface FCFirstViewController ()
+@interface FCArtistsViewController ()
 
 @end
 
-@implementation FCFirstViewController
+@implementation FCArtistsViewController
 
 - (void)viewDidLoad
 {

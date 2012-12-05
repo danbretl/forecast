@@ -17,12 +17,13 @@
 		32063B49166F1A1E00A43EED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B48166F1A1E00A43EED /* Default@2x.png */; };
 		32063B4B166F1A1E00A43EED /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B4A166F1A1E00A43EED /* Default-568h@2x.png */; };
 		32063B4E166F1A1E00A43EED /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32063B4C166F1A1E00A43EED /* MainStoryboard.storyboard */; };
-		32063B51166F1A1E00A43EED /* FCFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32063B50166F1A1E00A43EED /* FCFirstViewController.m */; };
+		32063B51166F1A1E00A43EED /* FCMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32063B50166F1A1E00A43EED /* FCMapViewController.m */; };
 		32063B53166F1A1E00A43EED /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B52166F1A1E00A43EED /* first.png */; };
 		32063B55166F1A1E00A43EED /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B54166F1A1E00A43EED /* first@2x.png */; };
-		32063B58166F1A1E00A43EED /* FCSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32063B57166F1A1E00A43EED /* FCSecondViewController.m */; };
+		32063B58166F1A1E00A43EED /* FCArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32063B57166F1A1E00A43EED /* FCArtistsViewController.m */; };
 		32063B5A166F1A1E00A43EED /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B59166F1A1E00A43EED /* second.png */; };
 		32063B5C166F1A1E00A43EED /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B5B166F1A1E00A43EED /* second@2x.png */; };
+		32333454166F398800B0CC33 /* FCProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32333453166F398800B0CC33 /* FCProjectsViewController.m */; };
 		32D5166B166F20CB0007D176 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D5166A166F20CB0007D176 /* Parse.framework */; };
 		32D5166E166F20F80007D176 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D5166D166F20F80007D176 /* AudioToolbox.framework */; };
 		32D51670166F20FD0007D176 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D5166F166F20FD0007D176 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -55,14 +56,16 @@
 		32063B48166F1A1E00A43EED /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		32063B4A166F1A1E00A43EED /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		32063B4D166F1A1E00A43EED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		32063B4F166F1A1E00A43EED /* FCFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCFirstViewController.h; sourceTree = "<group>"; };
-		32063B50166F1A1E00A43EED /* FCFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCFirstViewController.m; sourceTree = "<group>"; };
+		32063B4F166F1A1E00A43EED /* FCMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCMapViewController.h; sourceTree = "<group>"; };
+		32063B50166F1A1E00A43EED /* FCMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCMapViewController.m; sourceTree = "<group>"; };
 		32063B52166F1A1E00A43EED /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		32063B54166F1A1E00A43EED /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		32063B56166F1A1E00A43EED /* FCSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCSecondViewController.h; sourceTree = "<group>"; };
-		32063B57166F1A1E00A43EED /* FCSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCSecondViewController.m; sourceTree = "<group>"; };
+		32063B56166F1A1E00A43EED /* FCArtistsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCArtistsViewController.h; sourceTree = "<group>"; };
+		32063B57166F1A1E00A43EED /* FCArtistsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCArtistsViewController.m; sourceTree = "<group>"; };
 		32063B59166F1A1E00A43EED /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		32063B5B166F1A1E00A43EED /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		32333452166F398800B0CC33 /* FCProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProjectsViewController.h; sourceTree = "<group>"; };
+		32333453166F398800B0CC33 /* FCProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProjectsViewController.m; sourceTree = "<group>"; };
 		32D5166A166F20CB0007D176 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		32D5166D166F20F80007D176 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		32D5166F166F20FD0007D176 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -154,17 +157,10 @@
 		32063B3A166F1A1E00A43EED /* Forecast */ = {
 			isa = PBXGroup;
 			children = (
-				32063B43166F1A1E00A43EED /* FCAppDelegate.h */,
-				32063B44166F1A1E00A43EED /* FCAppDelegate.m */,
-				32063B4C166F1A1E00A43EED /* MainStoryboard.storyboard */,
-				32063B4F166F1A1E00A43EED /* FCFirstViewController.h */,
-				32063B50166F1A1E00A43EED /* FCFirstViewController.m */,
-				32063B52166F1A1E00A43EED /* first.png */,
-				32063B54166F1A1E00A43EED /* first@2x.png */,
-				32063B56166F1A1E00A43EED /* FCSecondViewController.h */,
-				32063B57166F1A1E00A43EED /* FCSecondViewController.m */,
-				32063B59166F1A1E00A43EED /* second.png */,
-				32063B5B166F1A1E00A43EED /* second@2x.png */,
+				32333450166F392800B0CC33 /* Root */,
+				3233344A166F38E400B0CC33 /* Map */,
+				3233344E166F390F00B0CC33 /* Artists */,
+				32333451166F396D00B0CC33 /* Projects */,
 				32063B3B166F1A1E00A43EED /* Supporting Files */,
 			);
 			path = Forecast;
@@ -182,6 +178,63 @@
 				32063B4A166F1A1E00A43EED /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3233344A166F38E400B0CC33 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				32063B4F166F1A1E00A43EED /* FCMapViewController.h */,
+				32063B50166F1A1E00A43EED /* FCMapViewController.m */,
+				3233344D166F390500B0CC33 /* Images */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		3233344D166F390500B0CC33 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				32063B52166F1A1E00A43EED /* first.png */,
+				32063B54166F1A1E00A43EED /* first@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		3233344E166F390F00B0CC33 /* Artists */ = {
+			isa = PBXGroup;
+			children = (
+				32063B56166F1A1E00A43EED /* FCArtistsViewController.h */,
+				32063B57166F1A1E00A43EED /* FCArtistsViewController.m */,
+				3233344F166F391B00B0CC33 /* Images */,
+			);
+			name = Artists;
+			sourceTree = "<group>";
+		};
+		3233344F166F391B00B0CC33 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				32063B59166F1A1E00A43EED /* second.png */,
+				32063B5B166F1A1E00A43EED /* second@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		32333450166F392800B0CC33 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				32063B43166F1A1E00A43EED /* FCAppDelegate.h */,
+				32063B44166F1A1E00A43EED /* FCAppDelegate.m */,
+				32063B4C166F1A1E00A43EED /* MainStoryboard.storyboard */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		32333451166F396D00B0CC33 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				32333452166F398800B0CC33 /* FCProjectsViewController.h */,
+				32333453166F398800B0CC33 /* FCProjectsViewController.m */,
+			);
+			name = Projects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +310,9 @@
 			files = (
 				32063B41166F1A1E00A43EED /* main.m in Sources */,
 				32063B45166F1A1E00A43EED /* FCAppDelegate.m in Sources */,
-				32063B51166F1A1E00A43EED /* FCFirstViewController.m in Sources */,
-				32063B58166F1A1E00A43EED /* FCSecondViewController.m in Sources */,
+				32063B51166F1A1E00A43EED /* FCMapViewController.m in Sources */,
+				32063B58166F1A1E00A43EED /* FCArtistsViewController.m in Sources */,
+				32333454166F398800B0CC33 /* FCProjectsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

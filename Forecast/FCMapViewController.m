@@ -1,18 +1,18 @@
 //
-//  FCSecondViewController.m
+//  FCMapViewController.m
 //  Forecast
 //
 //  Created by Dan Bretl on 12/4/12.
 //  Copyright (c) 2012 Dan Bretl. All rights reserved.
 //
 
-#import "FCSecondViewController.h"
+#import "FCMapViewController.h"
 
-@interface FCSecondViewController ()
+@interface FCMapViewController ()
 
 @end
 
-@implementation FCSecondViewController
+@implementation FCMapViewController
 
 - (void)viewDidLoad
 {

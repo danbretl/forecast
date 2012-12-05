@@ -4,11 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--First View Controller - Map-->
+        <!--Map View Controller - Map-->
         <scene sceneID="11">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
-                <viewController title="Map" id="2" customClass="FCFirstViewController" sceneMemberID="viewController">
+                <viewController title="Map" id="2" customClass="FCMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="16">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,15 +21,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="3lB-EC-24W"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="-130"/>
+            <point key="canvasLocation" x="928" y="-484"/>
         </scene>
         <!--Navigation Controller - Map Nav-->
         <scene sceneID="hZB-PY-6fS">
             <objects>
                 <navigationController title="Map Nav" definesPresentationContext="YES" id="rMI-9t-6Xe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="first" id="llf-Z2-rf3"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CLH-m8-RKN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="CLH-m8-RKN">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -39,30 +39,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qeZ-ME-RxI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="575" y="-125"/>
+            <point key="canvasLocation" x="503" y="-484"/>
         </scene>
         <!--Navigation Controller - Artists Nav-->
         <scene sceneID="ZgF-4X-VVr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s6N-CB-Yr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Artists Nav" definesPresentationContext="YES" id="Jdb-fD-LLk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Artists" image="second" id="mEO-s9-p2m"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="enz-Tu-tHa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="enz-Tu-tHa">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
                         <segue destination="3" kind="relationship" relationship="rootViewController" id="4w2-IY-Id9"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s6N-CB-Yr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="546" y="611"/>
+            <point key="canvasLocation" x="503" y="194"/>
         </scene>
         <!--Navigation Controller - Projects Nav-->
         <scene sceneID="Z8z-RR-J28">
             <objects>
                 <navigationController title="Projects Nav" definesPresentationContext="YES" id="qie-ig-haO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Projects" image="second" id="UYR-vs-Mwd"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GKi-uA-Llp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="GKi-uA-Llp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -71,12 +71,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSv-gI-EWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="1285"/>
+            <point key="canvasLocation" x="503" y="875"/>
         </scene>
-        <!--View Controller - Projects-->
+        <!--Projects View Controller - Projects-->
         <scene sceneID="yvH-CN-auZ">
             <objects>
-                <viewController title="Projects" id="MsN-ti-Lt9" sceneMemberID="viewController">
+                <viewController title="Projects" id="MsN-ti-Lt9" customClass="FCProjectsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HTL-g2-t4E">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -94,13 +94,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="39m-K1-ukx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="1283"/>
+            <point key="canvasLocation" x="928" y="875"/>
         </scene>
-        <!--Second View Controller - Artists-->
+        <!--Artists View Controller - Artists-->
         <scene sceneID="13">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
-                <viewController title="Artists" id="3" customClass="FCSecondViewController" sceneMemberID="viewController">
+                <viewController title="Artists" id="3" customClass="FCArtistsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="17">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,8 +114,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Artists" id="JVI-nt-fWS"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="604"/>
+            <point key="canvasLocation" x="928" y="194"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -144,11 +144,14 @@
         <image name="second" width="16" height="16"/>
     </resources>
     <classes>
-        <class className="FCFirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCFirstViewController.h"/>
+        <class className="FCArtistsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCArtistsViewController.h"/>
         </class>
-        <class className="FCSecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCSecondViewController.h"/>
+        <class className="FCMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCMapViewController.h"/>
+        </class>
+        <class className="FCProjectsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCProjectsViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
