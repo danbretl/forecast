@@ -29,7 +29,7 @@
         <scene sceneID="hZB-PY-6fS">
             <objects>
                 <navigationController title="Map Nav" definesPresentationContext="YES" id="rMI-9t-6Xe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="first" id="llf-Z2-rf3"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="first.png" id="llf-Z2-rf3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="CLH-m8-RKN">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -45,7 +45,7 @@
         <scene sceneID="ZgF-4X-VVr">
             <objects>
                 <navigationController title="Artists Nav" definesPresentationContext="YES" id="Jdb-fD-LLk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Artists" image="second" id="mEO-s9-p2m"/>
+                    <tabBarItem key="tabBarItem" title="Artists" image="second.png" id="mEO-s9-p2m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="enz-Tu-tHa">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -61,7 +61,7 @@
         <scene sceneID="Z8z-RR-J28">
             <objects>
                 <navigationController title="Projects Nav" definesPresentationContext="YES" id="qie-ig-haO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Projects" image="second" id="UYR-vs-Mwd"/>
+                    <tabBarItem key="tabBarItem" title="Projects" image="second.png" id="UYR-vs-Mwd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="GKi-uA-Llp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -140,8 +140,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="16" height="16"/>
-        <image name="second" width="16" height="16"/>
+        <image name="first.png" width="30" height="30"/>
+        <image name="second.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="FCArtistsViewController" superclassName="UIViewController">
