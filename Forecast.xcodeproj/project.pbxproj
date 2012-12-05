@@ -37,6 +37,7 @@
 		32D51682166F21400007D176 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51681166F21400007D176 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		32D51684166F21450007D176 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51683166F21440007D176 /* StoreKit.framework */; };
 		32D51686166F214B0007D176 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51685166F214B0007D176 /* SystemConfiguration.framework */; };
+		32D51689166F37E30007D176 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51688166F37E30007D176 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		32D51681166F21400007D176 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		32D51683166F21440007D176 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32D51685166F214B0007D176 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		32D51688166F37E30007D176 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D51689166F37E30007D176 /* MapKit.framework in Frameworks */,
 				32D51686166F214B0007D176 /* SystemConfiguration.framework in Frameworks */,
 				32D51684166F21450007D176 /* StoreKit.framework in Frameworks */,
 				32D51682166F21400007D176 /* Social.framework in Frameworks */,
@@ -126,6 +129,7 @@
 		32063B33166F1A1E00A43EED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32D51688166F37E30007D176 /* MapKit.framework */,
 				32D51685166F214B0007D176 /* SystemConfiguration.framework */,
 				32D51683166F21440007D176 /* StoreKit.framework */,
 				32D51681166F21400007D176 /* Social.framework */,
