@@ -7,12 +7,16 @@
 //
 
 #import "FCAppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation FCAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    // Set up Parse
+    [Parse setApplicationId:@"XeOSvRfKmXY8XThsRV8seVc8RhaKMor4TMpxsOKR"
+                  clientKey:@"zXJtzymbqSh2OOCt6O74dmd01UcKTQEJk14T3Pv1"];
+
     return YES;
 }
 							
