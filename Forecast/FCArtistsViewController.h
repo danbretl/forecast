@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FCArtistsViewController : UIViewController
+@interface FCArtistsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) NSArray * artists;
 
 @end
