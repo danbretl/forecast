@@ -46,6 +46,8 @@
 		32D51686166F214B0007D176 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51685166F214B0007D176 /* SystemConfiguration.framework */; };
 		32D51689166F37E30007D176 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51688166F37E30007D176 /* MapKit.framework */; };
 		32DEC22E168CABCF001DF2BE /* FCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DEC22D168CABCF001DF2BE /* FCLocation.m */; };
+		32DEC231168CB19F001DF2BE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DEC230168CB19F001DF2BE /* Icon.png */; };
+		32DEC233168CB1A3001DF2BE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DEC232168CB1A2001DF2BE /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,8 @@
 		32D51688166F37E30007D176 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		32DEC22C168CABCF001DF2BE /* FCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLocation.h; sourceTree = "<group>"; };
 		32DEC22D168CABCF001DF2BE /* FCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLocation.m; sourceTree = "<group>"; };
+		32DEC230168CB19F001DF2BE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		32DEC232168CB1A2001DF2BE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,8 @@
 				32063B3D166F1A1E00A43EED /* InfoPlist.strings */,
 				32063B40166F1A1E00A43EED /* main.m */,
 				32063B42166F1A1E00A43EED /* Forecast-Prefix.pch */,
+				32DEC230168CB19F001DF2BE /* Icon.png */,
+				32DEC232168CB1A2001DF2BE /* Icon@2x.png */,
 				32063B46166F1A1E00A43EED /* Default.png */,
 				32063B48166F1A1E00A43EED /* Default@2x.png */,
 				32063B4A166F1A1E00A43EED /* Default-568h@2x.png */,
@@ -346,6 +352,8 @@
 				32063B55166F1A1E00A43EED /* first@2x.png in Resources */,
 				32063B5A166F1A1E00A43EED /* second.png in Resources */,
 				32063B5C166F1A1E00A43EED /* second@2x.png in Resources */,
+				32DEC231168CB19F001DF2BE /* Icon.png in Resources */,
+				32DEC233168CB1A3001DF2BE /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
