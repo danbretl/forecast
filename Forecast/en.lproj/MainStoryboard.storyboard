@@ -15,6 +15,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="mAy-H0-2Db">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="nzb-fc-rl5"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -22,6 +25,9 @@
                     <navigationItem key="navigationItem" title="Map" id="3lB-EC-24W">
                         <barButtonItem key="backBarButtonItem" title="Map" id="uAP-6T-xVm"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="mAy-H0-2Db" id="ZuJ-PZ-WSl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
@@ -265,6 +271,9 @@
         </class>
         <class className="FCMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
         </class>
         <class className="FCProjectsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCProjectsViewController.h"/>

@@ -7,6 +7,7 @@
 //
 
 #import "FCMapViewController.h"
+#import "FCLocation.h"
 
 @interface FCMapViewController ()
 
@@ -14,16 +15,24 @@
 
 @implementation FCMapViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    if (self.locations.count == 0) {
+        [[FCParseManager sharedInstance] getLocationsForProjectWithID:nil inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSMutableArray * objectsLocal = [NSMutableArray array];
+            for (PFObject * object in objects) {
+                FCLocation * location = [FCLocation locationFromPFLocationObject:object];
+                [objectsLocal addObject:location];
+                NSLog(@"Added location object %@", location);
+            }
+            self.locations = objectsLocal;
+            [self addLocationsToMap:self.locations];
+        }];
+    }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)addLocationsToMap:(NSArray *)locations {
+    [self.mapView addAnnotations:locations];
 }
 
 @end

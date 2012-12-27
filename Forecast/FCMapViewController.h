@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface FCMapViewController : UIViewController
+@interface FCMapViewController : UIViewController <MKMapViewDelegate>
+
+@property (nonatomic) NSArray * locations; // Array of FCLocation objects
+
+@property (nonatomic) IBOutlet MKMapView * mapView;
 
 @end

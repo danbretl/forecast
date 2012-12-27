@@ -45,6 +45,7 @@
 		32D51684166F21450007D176 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51683166F21440007D176 /* StoreKit.framework */; };
 		32D51686166F214B0007D176 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51685166F214B0007D176 /* SystemConfiguration.framework */; };
 		32D51689166F37E30007D176 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D51688166F37E30007D176 /* MapKit.framework */; };
+		32DEC22E168CABCF001DF2BE /* FCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DEC22D168CABCF001DF2BE /* FCLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,8 @@
 		32D51683166F21440007D176 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32D51685166F214B0007D176 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		32D51688166F37E30007D176 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		32DEC22C168CABCF001DF2BE /* FCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLocation.h; sourceTree = "<group>"; };
+		32DEC22D168CABCF001DF2BE /* FCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 			children = (
 				32063B4F166F1A1E00A43EED /* FCMapViewController.h */,
 				32063B50166F1A1E00A43EED /* FCMapViewController.m */,
+				32DEC22C168CABCF001DF2BE /* FCLocation.h */,
+				32DEC22D168CABCF001DF2BE /* FCLocation.m */,
 				3233344D166F390500B0CC33 /* Images */,
 			);
 			name = Map;
@@ -361,6 +366,7 @@
 				32674FA81675935D00291D5D /* FCArtistCell.m in Sources */,
 				32674FAB167595FC00291D5D /* PFImageView+Placeholder.m in Sources */,
 				32674FB3167598A000291D5D /* FCArtistViewController.m in Sources */,
+				32DEC22E168CABCF001DF2BE /* FCLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

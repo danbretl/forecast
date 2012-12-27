@@ -23,7 +23,7 @@
 
 #pragma mark Data Retrieval
 
-- (void) getArtistsInBackgroundWithBlock:(PFArrayResultBlock)block {
+- (void)getArtistsInBackgroundWithBlock:(PFArrayResultBlock)block {
     PFQuery * query = [PFQuery queryWithClassName:@"Artist"];
     [query orderByAscending:@"name"];
     [query findObjectsInBackgroundWithBlock:block];
@@ -35,6 +35,15 @@
     if (artistID) {
         [query whereKey:@"artist" equalTo:[PFObject objectWithoutDataWithClassName:@"Artist" objectId:artistID]];
     }
+    [query findObjectsInBackgroundWithBlock:block];
+}
+- (void)getLocationsForProjectWithID:(NSString *)projectID inBackgroundWithBlock:(PFArrayResultBlock)block {
+    PFQuery * query = [PFQuery queryWithClassName:@"Location"];
+    if (projectID) {
+        [query whereKey:@"project" equalTo:[PFObject objectWithoutDataWithClassName:@"Project" objectId:projectID]];
+    }
+    [query includeKey:@"project"];
+    [query includeKey:@"project.artist"];
     [query findObjectsInBackgroundWithBlock:block];
 }
 
