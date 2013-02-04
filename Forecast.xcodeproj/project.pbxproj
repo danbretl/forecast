@@ -23,6 +23,8 @@
 		32063B58166F1A1E00A43EED /* FCArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32063B57166F1A1E00A43EED /* FCArtistsViewController.m */; };
 		32063B5A166F1A1E00A43EED /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B59166F1A1E00A43EED /* second.png */; };
 		32063B5C166F1A1E00A43EED /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B5B166F1A1E00A43EED /* second@2x.png */; };
+		3207AE4D16BF7641007C050A /* FCProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3207AE4C16BF7641007C050A /* FCProjectViewController.m */; };
+		3207AE5116BF7DDF007C050A /* NSNotificationCenter+Forecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 3207AE5016BF7DDF007C050A /* NSNotificationCenter+Forecast.m */; };
 		32333454166F398800B0CC33 /* FCProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32333453166F398800B0CC33 /* FCProjectsViewController.m */; };
 		32674F9F16758BD800291D5D /* Forecast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32674F9D16758BD800291D5D /* Forecast.xcdatamodeld */; };
 		32674FA116758C2100291D5D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32674FA016758C2100291D5D /* CoreData.framework */; };
@@ -30,6 +32,10 @@
 		32674FA81675935D00291D5D /* FCArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32674FA71675935D00291D5D /* FCArtistCell.m */; };
 		32674FAB167595FC00291D5D /* PFImageView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32674FAA167595FC00291D5D /* PFImageView+Placeholder.m */; };
 		32674FB3167598A000291D5D /* FCArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32674FB2167598A000291D5D /* FCArtistViewController.m */; };
+		32B8996616BE3CE2000908DB /* FCProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996516BE3CE2000908DB /* FCProjectCell.m */; };
+		32B8996916BE45DD000908DB /* FCLongTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996816BE45DC000908DB /* FCLongTextCell.m */; };
+		32B8996C16BE469C000908DB /* FCBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996B16BE469C000908DB /* FCBigImageCell.m */; };
+		32B8996F16BE46EB000908DB /* FCLinkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996E16BE46EB000908DB /* FCLinkCell.m */; };
 		32D5166B166F20CB0007D176 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D5166A166F20CB0007D176 /* Parse.framework */; };
 		32D5166E166F20F80007D176 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D5166D166F20F80007D176 /* AudioToolbox.framework */; };
 		32D51670166F20FD0007D176 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D5166F166F20FD0007D176 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -73,6 +79,11 @@
 		32063B57166F1A1E00A43EED /* FCArtistsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCArtistsViewController.m; sourceTree = "<group>"; };
 		32063B59166F1A1E00A43EED /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		32063B5B166F1A1E00A43EED /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		3207AE4B16BF7641007C050A /* FCProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProjectViewController.h; sourceTree = "<group>"; };
+		3207AE4C16BF7641007C050A /* FCProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProjectViewController.m; sourceTree = "<group>"; };
+		3207AE4F16BF7DDF007C050A /* NSNotificationCenter+Forecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Forecast.h"; sourceTree = "<group>"; };
+		3207AE5016BF7DDF007C050A /* NSNotificationCenter+Forecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Forecast.m"; sourceTree = "<group>"; };
+		3207AE5216BF8502007C050A /* TabBarConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarConstants.h; sourceTree = "<group>"; };
 		32333452166F398800B0CC33 /* FCProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProjectsViewController.h; sourceTree = "<group>"; };
 		32333453166F398800B0CC33 /* FCProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProjectsViewController.m; sourceTree = "<group>"; };
 		32674F9E16758BD800291D5D /* Forecast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Forecast.xcdatamodel; sourceTree = "<group>"; };
@@ -85,6 +96,14 @@
 		32674FAA167595FC00291D5D /* PFImageView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFImageView+Placeholder.m"; sourceTree = "<group>"; };
 		32674FB1167598A000291D5D /* FCArtistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCArtistViewController.h; sourceTree = "<group>"; };
 		32674FB2167598A000291D5D /* FCArtistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCArtistViewController.m; sourceTree = "<group>"; };
+		32B8996416BE3CE2000908DB /* FCProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProjectCell.h; sourceTree = "<group>"; };
+		32B8996516BE3CE2000908DB /* FCProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProjectCell.m; sourceTree = "<group>"; };
+		32B8996716BE45DC000908DB /* FCLongTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLongTextCell.h; sourceTree = "<group>"; };
+		32B8996816BE45DC000908DB /* FCLongTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLongTextCell.m; sourceTree = "<group>"; };
+		32B8996A16BE469C000908DB /* FCBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCBigImageCell.h; sourceTree = "<group>"; };
+		32B8996B16BE469C000908DB /* FCBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCBigImageCell.m; sourceTree = "<group>"; };
+		32B8996D16BE46EB000908DB /* FCLinkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLinkCell.h; sourceTree = "<group>"; };
+		32B8996E16BE46EB000908DB /* FCLinkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLinkCell.m; sourceTree = "<group>"; };
 		32D5166A166F20CB0007D176 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		32D5166D166F20F80007D176 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		32D5166F166F20FD0007D176 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -185,6 +204,7 @@
 				32333450166F392800B0CC33 /* Root */,
 				32674F9C16758BBD00291D5D /* Data */,
 				32674FA216758D9700291D5D /* Web */,
+				3207AE4E16BF7D8D007C050A /* Utilities */,
 				3233344A166F38E400B0CC33 /* Map */,
 				3233344E166F390F00B0CC33 /* Artists */,
 				32333451166F396D00B0CC33 /* Projects */,
@@ -207,6 +227,16 @@
 				32063B4A166F1A1E00A43EED /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3207AE4E16BF7D8D007C050A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3207AE5216BF8502007C050A /* TabBarConstants.h */,
+				3207AE4F16BF7DDF007C050A /* NSNotificationCenter+Forecast.h */,
+				3207AE5016BF7DDF007C050A /* NSNotificationCenter+Forecast.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		3233344A166F38E400B0CC33 /* Map */ = {
@@ -235,10 +265,16 @@
 			children = (
 				32063B56166F1A1E00A43EED /* FCArtistsViewController.h */,
 				32063B57166F1A1E00A43EED /* FCArtistsViewController.m */,
-				32674FB1167598A000291D5D /* FCArtistViewController.h */,
-				32674FB2167598A000291D5D /* FCArtistViewController.m */,
 				32674FA61675935D00291D5D /* FCArtistCell.h */,
 				32674FA71675935D00291D5D /* FCArtistCell.m */,
+				32674FB1167598A000291D5D /* FCArtistViewController.h */,
+				32674FB2167598A000291D5D /* FCArtistViewController.m */,
+				32B8996716BE45DC000908DB /* FCLongTextCell.h */,
+				32B8996816BE45DC000908DB /* FCLongTextCell.m */,
+				32B8996A16BE469C000908DB /* FCBigImageCell.h */,
+				32B8996B16BE469C000908DB /* FCBigImageCell.m */,
+				32B8996D16BE46EB000908DB /* FCLinkCell.h */,
+				32B8996E16BE46EB000908DB /* FCLinkCell.m */,
 				3233344F166F391B00B0CC33 /* Images */,
 			);
 			name = Artists;
@@ -268,6 +304,10 @@
 			children = (
 				32333452166F398800B0CC33 /* FCProjectsViewController.h */,
 				32333453166F398800B0CC33 /* FCProjectsViewController.m */,
+				32B8996416BE3CE2000908DB /* FCProjectCell.h */,
+				32B8996516BE3CE2000908DB /* FCProjectCell.m */,
+				3207AE4B16BF7641007C050A /* FCProjectViewController.h */,
+				3207AE4C16BF7641007C050A /* FCProjectViewController.m */,
 			);
 			name = Projects;
 			sourceTree = "<group>";
@@ -375,6 +415,12 @@
 				32674FAB167595FC00291D5D /* PFImageView+Placeholder.m in Sources */,
 				32674FB3167598A000291D5D /* FCArtistViewController.m in Sources */,
 				32DEC22E168CABCF001DF2BE /* FCLocation.m in Sources */,
+				32B8996616BE3CE2000908DB /* FCProjectCell.m in Sources */,
+				32B8996916BE45DD000908DB /* FCLongTextCell.m in Sources */,
+				32B8996C16BE469C000908DB /* FCBigImageCell.m in Sources */,
+				32B8996F16BE46EB000908DB /* FCLinkCell.m in Sources */,
+				3207AE4D16BF7641007C050A /* FCProjectViewController.m in Sources */,
+				3207AE5116BF7DDF007C050A /* NSNotificationCenter+Forecast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

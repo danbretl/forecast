@@ -11,5 +11,6 @@
 @interface FCArtistsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) NSArray * artists;
+@property (nonatomic, readonly) NSArray * objects;
 
 @end

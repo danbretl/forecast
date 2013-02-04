@@ -7,6 +7,12 @@
 //
 
 #import "FCArtistCell.h"
+#import "PFImageView+Placeholder.h"
+
+@interface FCArtistCell()
+@property (nonatomic, weak) IBOutlet PFImageView * artistImageView;
+@property (nonatomic, weak) IBOutlet UILabel * artistNameLabel;
+@end
 
 @implementation FCArtistCell
 
@@ -24,6 +30,17 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
++ (CGFloat)heightForCell {
+    return 56.0;
+}
+
+- (void)setViewsForArtist:(PFObject *)artist {
+    
+    [self.artistImageView setImageWithFile:artist[@"profileImage"] placeholder:nil];
+    self.artistNameLabel.text = artist[@"name"];
+    
 }
 
 @end

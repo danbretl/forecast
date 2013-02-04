@@ -35,6 +35,8 @@
     if (artistID) {
         [query whereKey:@"artist" equalTo:[PFObject objectWithoutDataWithClassName:@"Artist" objectId:artistID]];
     }
+    [query includeKey:@"category"];
+    [query includeKey:@"artist"];
     [query findObjectsInBackgroundWithBlock:block];
 }
 - (void)getLocationsForProjectWithID:(NSString *)projectID inBackgroundWithBlock:(PFArrayResultBlock)block {
@@ -44,7 +46,38 @@
     }
     [query includeKey:@"project"];
     [query includeKey:@"project.artist"];
+    [query includeKey:@"project.category"];
     [query findObjectsInBackgroundWithBlock:block];
+}
+
+- (void)getFirstImageForObjectOfClass:(NSString *)objectClass withID:(NSString *)objectID inBackgroundWithBlock:(PFArrayResultBlock)block {
+    if (objectClass && objectID) {
+        PFQuery * query = [PFQuery queryWithClassName:@"Image"];
+        [query orderByAscending:@"order"];
+        query.limit = 1;
+        [query whereKey:objectClass.lowercaseString equalTo:[PFObject objectWithoutDataWithClassName:objectClass objectId:objectID]];
+        [query findObjectsInBackgroundWithBlock:block];
+    }
+}
+
+- (void)getLinksForObjectOfClass:(NSString *)objectClass withID:(NSString *)objectID inBackgroundWithBlock:(PFArrayResultBlock)block {
+    if (objectClass && objectID) {
+        PFQuery * query = [PFQuery queryWithClassName:@"Link"];
+        [query orderByAscending:@"order"];
+        [query whereKey:objectClass.lowercaseString equalTo:[PFObject objectWithoutDataWithClassName:objectClass objectId:objectID]];
+        [query includeKey:@"type"];
+        [query findObjectsInBackgroundWithBlock:block];
+    }
+}
+
+#pragma mark External Links
+
+- (void) respondToLinkSelection:(PFObject *)link {
+    if ([link[@"type"][@"name"] isEqualToString:kLinkTypePhoneNumber]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", link[@"destination"]]]];
+    } else if ([link[@"type"][@"name"] isEqualToString:kLinkTypeWebsite]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:link[@"destination"]]];
+    }
 }
 
 #pragma mark Utility

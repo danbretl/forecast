@@ -8,9 +8,12 @@
 
 #import "FCMapViewController.h"
 #import "FCLocation.h"
+#import "NSNotificationCenter+Forecast.h"
+#import "TabBarConstants.h"
 
 @interface FCMapViewController ()
-
+- (void)addLocationsToMap:(NSArray *)locations;
+- (void)zoomToMinnesotaAnimated:(BOOL)animated; // Hardcoded map region
 @end
 
 @implementation FCMapViewController
@@ -27,12 +30,33 @@
             }
             self.locations = objectsLocal;
             [self addLocationsToMap:self.locations];
+            [self zoomToMinnesotaAnimated:YES];
         }];
     }
 }
 
 - (void)addLocationsToMap:(NSArray *)locations {
     [self.mapView addAnnotations:locations];
+}
+
+- (void)zoomToMinnesotaAnimated:(BOOL)animated {
+    [self.mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(46.072042, -94.010513), MKCoordinateSpanMake(5.594572, 7.031250)) animated:animated];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    MKPinAnnotationView * annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapPin"];
+    annotationView.pinColor = MKPinAnnotationColorPurple;
+    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    annotationView.canShowCallout = YES;
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    [NSNotificationCenter postSetActiveTabNotificationToDefaultCenterFromSource:self withTabIndex:kTabBarIndexProjects shouldPopToRoot:YES andPushViewControllerForParseClass:kParseClassProject withObject:((FCLocation *)view.annotation).project];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    NSLog(@"(%f, %f) - (%f, %f)", mapView.region.center.latitude, mapView.region.center.longitude, mapView.region.span.latitudeDelta, mapView.region.span.longitudeDelta);
 }
 
 @end

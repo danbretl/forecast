@@ -8,6 +8,9 @@
 
 #import "FCAppDelegate.h"
 #import "FCParseManager.h"
+#import "NSNotificationCenter+Forecast.h"
+#import "FCArtistViewController.h"
+#import "FCProjectViewController.h"
 
 @implementation FCAppDelegate
 
@@ -22,6 +25,9 @@
     
     // Parse Admin Utility
     // ...
+    
+    // Global notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(respondToSetActiveTabNotification:) name:kNotificationSetActiveTab object:nil];
 
     return YES;
 }
@@ -48,6 +54,56 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [self saveContext];
 }
+
+
+#pragma mark - Notifications
+
+- (void) respondToSetActiveTabNotification:(NSNotification *)notification {
+    
+    NSNumber * tabIndex = notification.userInfo[kNotificationSetActiveTabTabIndexKey];
+    BOOL shouldPopToRoot = [notification.userInfo[kNotificationSetActiveTabShouldPopToRootKey] boolValue];
+    NSString * pushParseClassName = notification.userInfo[kNotificationSetActiveTabPushViewControllerForParseClassKey];
+    PFObject * pushParseObject = notification.userInfo[kNotificationSetActiveTabPushViewControllerForParseClassObjectKey];
+    
+    UITabBarController * tabBarController = (UITabBarController *)self.window.rootViewController;
+    UINavigationController * navController = tabBarController.viewControllers[tabIndex.integerValue];
+    tabBarController.selectedViewController = navController;
+    if (shouldPopToRoot) {
+        [navController popToRootViewControllerAnimated:NO];
+        UIViewController * viewController = navController.viewControllers[0];
+        if ([viewController respondsToSelector:@selector(tableView)]) {
+            UITableView * tableView = (UITableView *)[viewController performSelector:@selector(tableView)];
+            [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:NO];
+            if ([viewController respondsToSelector:@selector(objects)] &&
+                pushParseObject != nil) {
+                NSArray * objects = [viewController performSelector:@selector(objects)];
+                NSUInteger indexOfObject = [objects indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+                    PFObject * objectToTest = (PFObject *)obj;
+                    return [objectToTest.objectId isEqualToString:pushParseObject.objectId];
+                }];
+                if (indexOfObject != NSNotFound &&
+                    indexOfObject < objects.count) {
+                    [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:indexOfObject inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+                }
+            }
+        }
+    }
+    if (pushParseClassName != nil && pushParseObject != nil) {
+        UIViewController * viewController = nil;
+        if ([pushParseClassName isEqualToString:kParseClassArtist]) {
+            FCArtistViewController * artistViewController = [tabBarController.storyboard instantiateViewControllerWithIdentifier:@"FCArtistViewController"];
+            artistViewController.artist = pushParseObject;
+            viewController = artistViewController;
+        } else if ([pushParseClassName isEqualToString:kParseClassProject]) {
+            FCProjectViewController * projectViewController = [tabBarController.storyboard instantiateViewControllerWithIdentifier:@"FCProjectViewController"];
+            projectViewController.project = pushParseObject;
+            viewController = projectViewController;
+        }
+        if (viewController) [navController pushViewController:viewController animated:NO];
+    }
+}
+
+#pragma mark - NSManagedObjectContext
 
 - (void)saveContext {
     NSError *error = nil;

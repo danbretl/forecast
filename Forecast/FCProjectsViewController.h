@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FCProjectsViewController : UIViewController
+@interface FCProjectsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) NSArray * projects;
+@property (nonatomic, readonly) NSArray * objects;
 
 @end

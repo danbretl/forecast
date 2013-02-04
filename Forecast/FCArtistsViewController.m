@@ -8,7 +8,6 @@
 
 #import "FCArtistsViewController.h"
 #import "FCArtistCell.h"
-#import "PFImageView+Placeholder.h"
 #import "FCArtistViewController.h"
 
 @interface FCArtistsViewController ()
@@ -21,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.rowHeight = [FCArtistCell heightForCell];
     if (self.artists.count == 0) {
         [[FCParseManager sharedInstance] getArtistsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             self.artists = objects;
@@ -43,6 +43,12 @@
     }
 }
 
+#pragma mark Public methods
+
+- (NSArray *)objects {
+    return self.artists;
+}
+
 #pragma mark Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -54,12 +60,8 @@
     // Create cell
     FCArtistCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ArtistCell"];
     
-    // Get data
-    PFObject * artist = self.artists[indexPath.row];
-    
     // Configure cell
-    [cell.artistImageView setImageWithFile:artist[@"profileImage"] placeholder:nil];
-    cell.artistNameLabel.text = artist[@"name"];
+    [cell setViewsForArtist:self.artists[indexPath.row]];
     
     // Return cell
     return cell;

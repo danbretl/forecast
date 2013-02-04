@@ -10,7 +10,8 @@
 
 @interface FCArtistCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet PFImageView * artistImageView;
-@property (nonatomic, weak) IBOutlet UILabel * artistNameLabel;
++ (CGFloat) heightForCell;
+
+- (void) setViewsForArtist:(PFObject *)artist;
 
 @end
