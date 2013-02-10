@@ -11,6 +11,12 @@
 #import "NSNotificationCenter+Forecast.h"
 #import "FCArtistViewController.h"
 #import "FCProjectViewController.h"
+#import "TabBarConstants.h"
+
+@interface FCAppDelegate()
+@property (nonatomic, readonly) UITabBarController * tabBarController;
+- (UINavigationController *) navControllerForTabIndex:(int)tabIndex;
+@end
 
 @implementation FCAppDelegate
 
@@ -25,11 +31,26 @@
     
     // Parse Admin Utility
     // ...
-    
     // Global notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(respondToSetActiveTabNotification:) name:kNotificationSetActiveTab object:nil];
-
+    
+    // UIAppearance Customization
+    // Tab Bar
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tab_bar_bg_tile"]];
+    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"clear"]];
+    // Tab Bar Items
+    [[self navControllerForTabIndex:kTabBarIndexMap].tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_bar_item_map_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_bar_item_map"]];
+    [[self navControllerForTabIndex:kTabBarIndexArtists].tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_bar_item_artists_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_bar_item_artists"]];
+    [[self navControllerForTabIndex:kTabBarIndexProjects].tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_bar_item_projects_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_bar_item_projects"]];
     return YES;
+}
+
+- (UITabBarController *) tabBarController {
+    return (UITabBarController *)self.window.rootViewController;
+}
+
+- (UINavigationController *) navControllerForTabIndex:(int)tabIndex {
+    return (UINavigationController *)self.tabBarController.viewControllers[tabIndex];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application {

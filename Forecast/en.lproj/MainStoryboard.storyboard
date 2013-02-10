@@ -33,11 +33,11 @@
             </objects>
             <point key="canvasLocation" x="928" y="-484"/>
         </scene>
-        <!--Navigation Controller - Map Nav-->
+        <!--Navigation Controller - MapNavController-->
         <scene sceneID="hZB-PY-6fS">
             <objects>
-                <navigationController title="Map Nav" definesPresentationContext="YES" id="rMI-9t-6Xe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="first.png" id="llf-Z2-rf3"/>
+                <navigationController title="MapNavController" definesPresentationContext="YES" id="rMI-9t-6Xe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="llf-Z2-rf3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="CLH-m8-RKN">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -49,11 +49,11 @@
             </objects>
             <point key="canvasLocation" x="503" y="-484"/>
         </scene>
-        <!--Navigation Controller - Artists Nav-->
+        <!--Navigation Controller - ArtistsNavController-->
         <scene sceneID="ZgF-4X-VVr">
             <objects>
-                <navigationController title="Artists Nav" definesPresentationContext="YES" id="Jdb-fD-LLk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Artists" image="second.png" id="mEO-s9-p2m"/>
+                <navigationController title="ArtistsNavController" definesPresentationContext="YES" id="Jdb-fD-LLk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="mEO-s9-p2m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="enz-Tu-tHa">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -65,11 +65,11 @@
             </objects>
             <point key="canvasLocation" x="503" y="194"/>
         </scene>
-        <!--Navigation Controller - Projects Nav-->
+        <!--Navigation Controller - ProjectsNavController-->
         <scene sceneID="Z8z-RR-J28">
             <objects>
-                <navigationController title="Projects Nav" definesPresentationContext="YES" id="qie-ig-haO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Projects" image="second.png" id="UYR-vs-Mwd"/>
+                <navigationController title="ProjectsNavController" definesPresentationContext="YES" id="qie-ig-haO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="UYR-vs-Mwd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="GKi-uA-Llp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -517,10 +517,10 @@
             </objects>
             <point key="canvasLocation" x="1354" y="80"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - TabBarController-->
         <scene sceneID="15">
             <objects>
-                <tabBarController id="4" sceneMemberID="viewController">
+                <tabBarController title="TabBarController" id="4" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -538,10 +538,6 @@
             <point key="canvasLocation" x="-5" y="194"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="first.png" width="30" height="30"/>
-        <image name="second.png" width="30" height="30"/>
-    </resources>
     <classes>
         <class className="FCArtistCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCArtistCell.h"/>

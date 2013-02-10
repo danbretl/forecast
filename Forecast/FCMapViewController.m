@@ -55,8 +55,9 @@
     [NSNotificationCenter postSetActiveTabNotificationToDefaultCenterFromSource:self withTabIndex:kTabBarIndexProjects shouldPopToRoot:YES andPushViewControllerForParseClass:kParseClassProject withObject:((FCLocation *)view.annotation).project];
 }
 
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    NSLog(@"(%f, %f) - (%f, %f)", mapView.region.center.latitude, mapView.region.center.longitude, mapView.region.span.latitudeDelta, mapView.region.span.longitudeDelta);
-}
+// Debugging
+//- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+//    NSLog(@"(%f, %f) - (%f, %f)", mapView.region.center.latitude, mapView.region.center.longitude, mapView.region.span.latitudeDelta, mapView.region.span.longitudeDelta);
+//}
 
 @end
