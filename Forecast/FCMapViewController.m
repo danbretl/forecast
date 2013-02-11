@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setRightBarButtonItemToSearchButton];
     if (self.locations.count == 0) {
         [[FCParseManager sharedInstance] getLocationsForProjectWithID:nil inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             NSMutableArray * objectsLocal = [NSMutableArray array];

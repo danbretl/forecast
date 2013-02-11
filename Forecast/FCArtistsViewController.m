@@ -20,11 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setRightBarButtonItemToSearchButton];
     self.tableView.rowHeight = [FCArtistCell heightForCell];
     if (self.artists.count == 0) {
         [[FCParseManager sharedInstance] getArtistsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             self.artists = objects;
-            [self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }];
     }
 }

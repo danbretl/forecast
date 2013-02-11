@@ -38,7 +38,9 @@
     // Navigation bar
     NSString * artistName = self.artist[@"name"];
     self.navigationItem.title = artistName;
-    self.navigationItem.backBarButtonItem.title = artistName;
+    self.navigationItem.backBarButtonItem.title = artistName;    
+    [self setBackBarButtonItemToArrowButton]; // This is the back button that will show when THIS view controller is at the top of the navigation stack. This is a bit different from the way Apple does it.
+    [self setRightBarButtonItemToStarButton];
     
     [self.tableView reloadData];
     

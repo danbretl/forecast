@@ -20,11 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setRightBarButtonItemToSearchButton];
     self.tableView.rowHeight = [FCProjectCell heightForCell];
     if (self.projects.count == 0) {
         [[FCParseManager sharedInstance] getProjectsForArtistWithID:nil inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             self.projects = objects;
-            [self.tableView reloadData];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }];
     }
 }

@@ -9,6 +9,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    UIBarButtonItemSideLeft  = 1,
+    UIBarButtonItemSideRight = 2,
+} UIBarButtonItemSide;
+
 @interface FCViewController : UIViewController
+
+- (UIBarButtonItem *) setBackBarButtonItemToArrowButton;
+- (void) clearLeftBarButtonItem;
+
+- (UIBarButtonItem *) setRightBarButtonItemToSearchButton;
+- (UIBarButtonItem *) setRightBarButtonItemToStarButton;
+- (void) clearRightBarButtonItem;
+
+- (void) barButtonItemTouchedOnSide:(UIBarButtonItemSide)side; // Subclasses should override this method
 
 @end
