@@ -10,6 +10,7 @@
 #import "FCLocation.h"
 #import "NSNotificationCenter+Forecast.h"
 #import "TabBarConstants.h"
+#import "FCProjectViewController.h"
 
 @interface FCMapViewController ()
 - (void)addLocationsToMap:(NSArray *)locations;
@@ -53,7 +54,18 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    [NSNotificationCenter postSetActiveTabNotificationToDefaultCenterFromSource:self withTabIndex:kTabBarIndexProjects shouldPopToRoot:YES andPushViewControllerForParseClass:kParseClassProject withObject:((FCLocation *)view.annotation).project];
+
+    // TWO OPTIONS
+    // We could either navigate to (and push a project view controller onto) the projects tab, OR we could just push a project view controller on top of the map...
+
+    // OPTION 1: Push a project view controller on top of the map
+    FCProjectViewController * projectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FCProjectViewController"];
+    projectViewController.project = ((FCLocation *)view.annotation).project;
+    [self.navigationController pushViewController:projectViewController animated:YES];
+
+    // OPTION 2: Navigate to projects tab
+//    [NSNotificationCenter postSetActiveTabNotificationToDefaultCenterFromSource:self withTabIndex:kTabBarIndexProjects shouldPopToRoot:YES andPushViewControllerForParseClass:kParseClassProject withObject:((FCLocation *)view.annotation).project];
+    
 }
 
 // Debugging
