@@ -97,26 +97,26 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProjectCell" id="vqG-Oi-qGr" customClass="FCProjectCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProjectCell" rowHeight="58" id="vqG-Oi-qGr" customClass="FCProjectCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="Rvm-OU-g2w" customClass="PFImageView">
-                                                    <rect key="frame" x="10" y="2" width="52" height="52"/>
+                                                    <rect key="frame" x="10" y="3" width="52" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Project Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Ah-Xb-Phs">
-                                                    <rect key="frame" x="72" y="2" width="218" height="52"/>
+                                                    <rect key="frame" x="72" y="3" width="218" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" id="LTN-Cj-PSU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="8" height="56"/>
+                                                <view contentMode="scaleToFill" id="LTN-Cj-PSU" customClass="FCNeverClearView">
+                                                    <rect key="frame" x="0.0" y="3" width="8" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
@@ -305,23 +305,23 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtistCell" id="A7I-BY-hL9" customClass="FCArtistCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtistCell" rowHeight="58" id="A7I-BY-hL9" customClass="FCArtistCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="YhN-Vz-5mG" customClass="PFImageView">
-                                                    <rect key="frame" x="10" y="2" width="52" height="52"/>
+                                                    <rect key="frame" x="10" y="3" width="52" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Artist Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B3S-Yu-W3E">
-                                                    <rect key="frame" x="72" y="18" width="218" height="20"/>
+                                                    <rect key="frame" x="72" y="3" width="218" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -357,11 +357,11 @@
             <objects>
                 <viewController storyboardIdentifier="FCArtistViewController" id="t60-9F-tRP" customClass="FCArtistViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rqg-xJ-7J6">
-                        <rect key="frame" x="0.0" y="64" width="320" height="569"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="575"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" id="DXF-73-RwM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="569"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="575"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -418,26 +418,26 @@
                                             <outlet property="captionLabel" destination="q0f-Pb-MNx" id="9Yc-cR-XPW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArtistProjectCell" rowHeight="56" id="Bxj-4q-LMv" customClass="FCProjectCell">
-                                        <rect key="frame" x="0.0" y="341" width="320" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArtistProjectCell" rowHeight="58" id="Bxj-4q-LMv" customClass="FCProjectCell">
+                                        <rect key="frame" x="0.0" y="341" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="u0k-Rm-80h" customClass="PFImageView">
-                                                    <rect key="frame" x="10" y="2" width="52" height="52"/>
+                                                    <rect key="frame" x="10" y="3" width="52" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Project Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ozh-bF-Qdk">
-                                                    <rect key="frame" x="72" y="2" width="218" height="52"/>
+                                                    <rect key="frame" x="72" y="3" width="218" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" id="fZ6-vK-Gy3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="8" height="56"/>
+                                                <view contentMode="scaleToFill" id="fZ6-vK-Gy3" customClass="FCNeverClearView">
+                                                    <rect key="frame" x="0.0" y="3" width="8" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
@@ -451,7 +451,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArtistStatementCell" rowHeight="128" id="aje-mt-HY6" customClass="FCLongTextCell">
-                                        <rect key="frame" x="0.0" y="397" width="320" height="128"/>
+                                        <rect key="frame" x="0.0" y="399" width="320" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
@@ -473,7 +473,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ArtistLinkCell" rowHeight="44" id="Rv6-1Y-ppc" customClass="FCLinkCell">
-                                        <rect key="frame" x="0.0" y="525" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="527" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -588,10 +588,13 @@
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
+        <class className="FCNeverClearView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCNeverClearView.h"/>
+        </class>
         <class className="FCProjectCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCProjectCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="projectCategoryColorView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="projectCategoryColorView" candidateClass="FCNeverClearView"/>
                 <relationship kind="outlet" name="projectImageView" candidateClass="PFImageView"/>
                 <relationship kind="outlet" name="projectNameLabel" candidateClass="UILabel"/>
             </relationships>

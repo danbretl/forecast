@@ -8,33 +8,18 @@
 
 #import "FCProjectCell.h"
 #import "PFImageView+Placeholder.h"
+#import "FCNeverClearView.h"
 
 @interface FCProjectCell()
-@property (nonatomic, weak) IBOutlet UIView * projectCategoryColorView;
+@property (nonatomic, weak) IBOutlet FCNeverClearView * projectCategoryColorView;
 @property (nonatomic, weak) IBOutlet PFImageView * projectImageView;
 @property (nonatomic, weak) IBOutlet UILabel * projectNameLabel;
 @end
 
 @implementation FCProjectCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 + (CGFloat)heightForCell {
-    return 56.0;
+    return 58.0;
 }
 
 - (void)setViewsForProject:(PFObject *)project {

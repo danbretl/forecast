@@ -10,6 +10,7 @@
 #import "FCLongTextCell.h"
 #import "FCBigImageCell.h"
 #import "FCLinkCell.h"
+#import "FCSectionHeader.h"
 
 #define kProjectSectionIntro 0
 #define kProjectSectionSplashImage 1
@@ -83,6 +84,13 @@
     return heightForHeader;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    FCSectionHeader * sectionHeader = [[FCSectionHeader alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section])];
+    sectionHeader.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    sectionHeader.label.text = [self tableView:tableView titleForHeaderInSection:section].uppercaseString;
+    return sectionHeader;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger numberOfRows = 0;
     switch (section) {
@@ -129,7 +137,7 @@
     UITableViewCell * cell = nil;
     if (indexPath.section == kProjectSectionIntro) {
         FCLongTextCell * introCell = [tableView dequeueReusableCellWithIdentifier:@"ProjectIntroCell"];
-        [introCell setText:self.project[@"description"] imageFile:self.project[@"profileImage"]];
+        [introCell setText:self.project[@"description"] imageFile:self.project[@"category"][@"icon"]];
         cell = introCell;
     } else if (indexPath.section == kProjectSectionSplashImage) {
         FCBigImageCell * splashCell = [tableView dequeueReusableCellWithIdentifier:@"ProjectSplashCell"];

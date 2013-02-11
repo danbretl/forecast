@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FCTableViewCell.h"
 
-@interface FCArtistCell : UITableViewCell
+@interface FCArtistCell : FCTableViewCell
 
 + (CGFloat) heightForCell;
 

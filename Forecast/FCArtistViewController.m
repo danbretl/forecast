@@ -13,6 +13,7 @@
 #import "FCLinkCell.h"
 #import "NSNotificationCenter+Forecast.h"
 #import "TabBarConstants.h"
+#import "FCSectionHeader.h"
 
 #define kArtistSectionBio 0
 #define kArtistSectionSplashImage 1
@@ -96,6 +97,14 @@
         heightForHeader = 30;
     }
     return heightForHeader;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    FCSectionHeader * sectionHeader = [[FCSectionHeader alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section])];
+    sectionHeader.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    sectionHeader.label.text = [self tableView:tableView titleForHeaderInSection:section].uppercaseString;
+    NSLog(@"%@", NSStringFromCGRect(sectionHeader.label.frame));
+    return sectionHeader;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

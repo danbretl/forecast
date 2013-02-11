@@ -53,6 +53,9 @@
 		32B72A8E16C867C200349E1E /* nav_bar_bg_str.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B72A8C16C867C200349E1E /* nav_bar_bg_str.png */; };
 		32B72A8F16C867C200349E1E /* nav_bar_bg_str@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B72A8D16C867C200349E1E /* nav_bar_bg_str@2x.png */; };
 		32B72A9316C8691A00349E1E /* FCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72A9216C8691A00349E1E /* FCViewController.m */; };
+		32B72A9816C873C200349E1E /* FCSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72A9716C873C200349E1E /* FCSectionHeader.m */; };
+		32B72A9B16C88AC200349E1E /* FCNeverClearView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72A9A16C88AC200349E1E /* FCNeverClearView.m */; };
+		32B72A9E16C88C1E00349E1E /* FCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72A9D16C88C1E00349E1E /* FCTableViewCell.m */; };
 		32B8996616BE3CE2000908DB /* FCProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996516BE3CE2000908DB /* FCProjectCell.m */; };
 		32B8996916BE45DD000908DB /* FCLongTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996816BE45DC000908DB /* FCLongTextCell.m */; };
 		32B8996C16BE469C000908DB /* FCBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996B16BE469C000908DB /* FCBigImageCell.m */; };
@@ -139,6 +142,12 @@
 		32B72A8D16C867C200349E1E /* nav_bar_bg_str@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_bar_bg_str@2x.png"; sourceTree = "<group>"; };
 		32B72A9116C8691A00349E1E /* FCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCViewController.h; sourceTree = "<group>"; };
 		32B72A9216C8691A00349E1E /* FCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCViewController.m; sourceTree = "<group>"; };
+		32B72A9616C873C200349E1E /* FCSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSectionHeader.h; sourceTree = "<group>"; };
+		32B72A9716C873C200349E1E /* FCSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSectionHeader.m; sourceTree = "<group>"; };
+		32B72A9916C88AC200349E1E /* FCNeverClearView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCNeverClearView.h; sourceTree = "<group>"; };
+		32B72A9A16C88AC200349E1E /* FCNeverClearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCNeverClearView.m; sourceTree = "<group>"; };
+		32B72A9C16C88C1E00349E1E /* FCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTableViewCell.h; sourceTree = "<group>"; };
+		32B72A9D16C88C1E00349E1E /* FCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTableViewCell.m; sourceTree = "<group>"; };
 		32B8996416BE3CE2000908DB /* FCProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProjectCell.h; sourceTree = "<group>"; };
 		32B8996516BE3CE2000908DB /* FCProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProjectCell.m; sourceTree = "<group>"; };
 		32B8996716BE45DC000908DB /* FCLongTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLongTextCell.h; sourceTree = "<group>"; };
@@ -248,8 +257,7 @@
 				32674F9C16758BBD00291D5D /* Data */,
 				32674FA216758D9700291D5D /* Web */,
 				3207AE4E16BF7D8D007C050A /* Utilities */,
-				32B72A5416C851FF00349E1E /* Tab Bar */,
-				32B72A8A16C867B100349E1E /* Nav Bar */,
+				32B72A9416C8737E00349E1E /* Shared Views */,
 				32B72A9016C868E800349E1E /* UIViewControllerCustomAppearance */,
 				3233344A166F38E400B0CC33 /* Map */,
 				3233344E166F390F00B0CC33 /* Artists */,
@@ -315,12 +323,6 @@
 				32674FA71675935D00291D5D /* FCArtistCell.m */,
 				32674FB1167598A000291D5D /* FCArtistViewController.h */,
 				32674FB2167598A000291D5D /* FCArtistViewController.m */,
-				32B8996716BE45DC000908DB /* FCLongTextCell.h */,
-				32B8996816BE45DC000908DB /* FCLongTextCell.m */,
-				32B8996A16BE469C000908DB /* FCBigImageCell.h */,
-				32B8996B16BE469C000908DB /* FCBigImageCell.m */,
-				32B8996D16BE46EB000908DB /* FCLinkCell.h */,
-				32B8996E16BE46EB000908DB /* FCLinkCell.m */,
 				3233344F166F391B00B0CC33 /* Images */,
 			);
 			name = Artists;
@@ -436,6 +438,35 @@
 			name = UIViewControllerCustomAppearance;
 			sourceTree = "<group>";
 		};
+		32B72A9416C8737E00349E1E /* Shared Views */ = {
+			isa = PBXGroup;
+			children = (
+				32B72A5416C851FF00349E1E /* Tab Bar */,
+				32B72A8A16C867B100349E1E /* Nav Bar */,
+				32B72A9516C8738800349E1E /* Table View Elements */,
+			);
+			name = "Shared Views";
+			sourceTree = "<group>";
+		};
+		32B72A9516C8738800349E1E /* Table View Elements */ = {
+			isa = PBXGroup;
+			children = (
+				32B72A9616C873C200349E1E /* FCSectionHeader.h */,
+				32B72A9716C873C200349E1E /* FCSectionHeader.m */,
+				32B72A9916C88AC200349E1E /* FCNeverClearView.h */,
+				32B72A9A16C88AC200349E1E /* FCNeverClearView.m */,
+				32B72A9C16C88C1E00349E1E /* FCTableViewCell.h */,
+				32B72A9D16C88C1E00349E1E /* FCTableViewCell.m */,
+				32B8996716BE45DC000908DB /* FCLongTextCell.h */,
+				32B8996816BE45DC000908DB /* FCLongTextCell.m */,
+				32B8996A16BE469C000908DB /* FCBigImageCell.h */,
+				32B8996B16BE469C000908DB /* FCBigImageCell.m */,
+				32B8996D16BE46EB000908DB /* FCLinkCell.h */,
+				32B8996E16BE46EB000908DB /* FCLinkCell.m */,
+			);
+			name = "Table View Elements";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -547,6 +578,9 @@
 				3207AE4D16BF7641007C050A /* FCProjectViewController.m in Sources */,
 				3207AE5116BF7DDF007C050A /* NSNotificationCenter+Forecast.m in Sources */,
 				32B72A9316C8691A00349E1E /* FCViewController.m in Sources */,
+				32B72A9816C873C200349E1E /* FCSectionHeader.m in Sources */,
+				32B72A9B16C88AC200349E1E /* FCNeverClearView.m in Sources */,
+				32B72A9E16C88C1E00349E1E /* FCTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
