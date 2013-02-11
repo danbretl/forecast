@@ -59,12 +59,12 @@
     // We could either navigate to (and push a project view controller onto) the projects tab, OR we could just push a project view controller on top of the map...
 
     // OPTION 1: Push a project view controller on top of the map
-    FCProjectViewController * projectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FCProjectViewController"];
-    projectViewController.project = ((FCLocation *)view.annotation).project;
-    [self.navigationController pushViewController:projectViewController animated:YES];
+//    FCProjectViewController * projectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FCProjectViewController"];
+//    projectViewController.project = ((FCLocation *)view.annotation).project;
+//    [self.navigationController pushViewController:projectViewController animated:YES];
 
     // OPTION 2: Navigate to projects tab
-//    [NSNotificationCenter postSetActiveTabNotificationToDefaultCenterFromSource:self withTabIndex:kTabBarIndexProjects shouldPopToRoot:YES andPushViewControllerForParseClass:kParseClassProject withObject:((FCLocation *)view.annotation).project];
+    [NSNotificationCenter postSetActiveTabNotificationToDefaultCenterFromSource:self withTabIndex:kTabBarIndexProjects shouldPopToRoot:YES andPushViewControllerForParseClass:kParseClassProject withObject:((FCLocation *)view.annotation).project];
     
 }
 
