@@ -43,6 +43,8 @@
     [[self navControllerForTabIndex:kTabBarIndexArtists].tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_bar_item_artists_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_bar_item_artists"]];
     [[self navControllerForTabIndex:kTabBarIndexProjects].tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab_bar_item_projects_selected"] withFinishedUnselectedImage:[UIImage imageNamed:@"tab_bar_item_projects"]];
     return YES;
+    // Navigation Bar
+    // Not able to set navigation bar appearance here for some reason... I've had this problem before. Will figure it out later. Doing it in view controllers' viewDidLoad instead for now.
 }
 
 - (UITabBarController *) tabBarController {

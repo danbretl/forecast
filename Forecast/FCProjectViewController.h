@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FCViewController.h"
 
-@interface FCProjectViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FCProjectViewController : FCViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) PFObject * project;
 

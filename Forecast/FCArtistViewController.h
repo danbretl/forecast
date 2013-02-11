@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FCViewController.h"
 
-@interface FCArtistViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FCArtistViewController : FCViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) PFObject * artist;
 

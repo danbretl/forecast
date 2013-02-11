@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "FCViewController.h"
 
-@interface FCMapViewController : UIViewController <MKMapViewDelegate>
+@interface FCMapViewController : FCViewController <MKMapViewDelegate>
 
 @property (nonatomic) NSArray * locations; // Array of FCLocation objects
 

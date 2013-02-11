@@ -40,6 +40,7 @@
                     <tabBarItem key="tabBarItem" title="" id="llf-Z2-rf3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="CLH-m8-RKN">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="2" kind="relationship" relationship="rootViewController" id="eTs-oo-uj5"/>
@@ -56,6 +57,7 @@
                     <tabBarItem key="tabBarItem" title="" id="mEO-s9-p2m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="enz-Tu-tHa">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="3" kind="relationship" relationship="rootViewController" id="4w2-IY-Id9"/>
@@ -72,6 +74,7 @@
                     <tabBarItem key="tabBarItem" title="" id="UYR-vs-Mwd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="GKi-uA-Llp">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="MsN-ti-Lt9" kind="relationship" relationship="rootViewController" id="Lsh-s4-mVa"/>
@@ -546,13 +549,13 @@
                 <relationship kind="outlet" name="artistNameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="FCArtistViewController" superclassName="UIViewController">
+        <class className="FCArtistViewController" superclassName="FCViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCArtistViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="FCArtistsViewController" superclassName="UIViewController">
+        <class className="FCArtistsViewController" superclassName="FCViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCArtistsViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
@@ -579,7 +582,7 @@
                 <relationship kind="outlet" name="longTextLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="FCMapViewController" superclassName="UIViewController">
+        <class className="FCMapViewController" superclassName="FCViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCMapViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
@@ -593,17 +596,20 @@
                 <relationship kind="outlet" name="projectNameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="FCProjectViewController" superclassName="UIViewController">
+        <class className="FCProjectViewController" superclassName="FCViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCProjectViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="FCProjectsViewController" superclassName="UIViewController">
+        <class className="FCProjectsViewController" superclassName="FCViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FCProjectsViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
+        </class>
+        <class className="FCViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCViewController.h"/>
         </class>
         <class className="PFImageView" superclassName="UIImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFImageView.h"/>
