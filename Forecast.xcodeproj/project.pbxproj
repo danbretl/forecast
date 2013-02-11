@@ -56,6 +56,7 @@
 		32B72A9816C873C200349E1E /* FCSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72A9716C873C200349E1E /* FCSectionHeader.m */; };
 		32B72A9B16C88AC200349E1E /* FCNeverClearView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72A9A16C88AC200349E1E /* FCNeverClearView.m */; };
 		32B72A9E16C88C1E00349E1E /* FCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72A9D16C88C1E00349E1E /* FCTableViewCell.m */; };
+		32B72AA116C895E200349E1E /* FCColoredDisclosureIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B72AA016C895E200349E1E /* FCColoredDisclosureIndicator.m */; };
 		32B8996616BE3CE2000908DB /* FCProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996516BE3CE2000908DB /* FCProjectCell.m */; };
 		32B8996916BE45DD000908DB /* FCLongTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996816BE45DC000908DB /* FCLongTextCell.m */; };
 		32B8996C16BE469C000908DB /* FCBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B8996B16BE469C000908DB /* FCBigImageCell.m */; };
@@ -148,6 +149,8 @@
 		32B72A9A16C88AC200349E1E /* FCNeverClearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCNeverClearView.m; sourceTree = "<group>"; };
 		32B72A9C16C88C1E00349E1E /* FCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTableViewCell.h; sourceTree = "<group>"; };
 		32B72A9D16C88C1E00349E1E /* FCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTableViewCell.m; sourceTree = "<group>"; };
+		32B72A9F16C895E100349E1E /* FCColoredDisclosureIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCColoredDisclosureIndicator.h; sourceTree = "<group>"; };
+		32B72AA016C895E200349E1E /* FCColoredDisclosureIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCColoredDisclosureIndicator.m; sourceTree = "<group>"; };
 		32B8996416BE3CE2000908DB /* FCProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProjectCell.h; sourceTree = "<group>"; };
 		32B8996516BE3CE2000908DB /* FCProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProjectCell.m; sourceTree = "<group>"; };
 		32B8996716BE45DC000908DB /* FCLongTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLongTextCell.h; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 				32B72A9716C873C200349E1E /* FCSectionHeader.m */,
 				32B72A9916C88AC200349E1E /* FCNeverClearView.h */,
 				32B72A9A16C88AC200349E1E /* FCNeverClearView.m */,
+				32B72A9F16C895E100349E1E /* FCColoredDisclosureIndicator.h */,
+				32B72AA016C895E200349E1E /* FCColoredDisclosureIndicator.m */,
 				32B72A9C16C88C1E00349E1E /* FCTableViewCell.h */,
 				32B72A9D16C88C1E00349E1E /* FCTableViewCell.m */,
 				32B8996716BE45DC000908DB /* FCLongTextCell.h */,
@@ -581,6 +586,7 @@
 				32B72A9816C873C200349E1E /* FCSectionHeader.m in Sources */,
 				32B72A9B16C88AC200349E1E /* FCNeverClearView.m in Sources */,
 				32B72A9E16C88C1E00349E1E /* FCTableViewCell.m in Sources */,
+				32B72AA116C895E200349E1E /* FCColoredDisclosureIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

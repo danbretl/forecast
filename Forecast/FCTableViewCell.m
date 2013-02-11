@@ -7,6 +7,7 @@
 //
 
 #import "FCTableViewCell.h"
+#import "FCColoredDisclosureIndicator.h"
 
 @interface FCTableViewCell()
 - (void) setSubviewLabelsHighlightedColorsToNormalColors:(UIView *)superview;
@@ -24,11 +25,16 @@
 
     // Selected background view
     UIView * selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
-    selectedBackgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diagonal_tile"]];
+    selectedBackgroundView.backgroundColor = [[UIColor colorWithPatternImage:[UIImage imageNamed:@"diagonal_tile"]] colorWithAlphaComponent:0.5];
     self.selectedBackgroundView = selectedBackgroundView;
     
     // Highlighted color of labels
     [self setSubviewLabelsHighlightedColorsToNormalColors:self];
+    
+    // Disclosure indicator
+    FCColoredDisclosureIndicator * accessory = [FCColoredDisclosureIndicator accessoryWithColor:[UIColor colorWithWhite:51.0/255.0 alpha:1.0]];
+    accessory.highlightedColor = accessory.accessoryColor;
+    self.accessoryView = accessory;
 }
 
 - (void) setSubviewLabelsHighlightedColorsToNormalColors:(UIView *)superview {
