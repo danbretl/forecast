@@ -51,6 +51,11 @@
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kProjectSectionLinks] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
     
+    // Get whether this project is a favorite
+    [self setBarButtonItemOnSide:UIBarButtonItemSideRight isSelected:[[FCParseManager sharedInstance] isFavoriteObjectWithClass:kParseClassProject withID:self.project.objectId forceServerCheckInBackgroundWithBlock:^(PFObject *favorite, NSError *error) {
+        if (!error) [self setBarButtonItemOnSide:UIBarButtonItemSideRight isSelected:favorite != nil && [favorite[@"isFavorite"] boolValue]];
+    }]];
+    
 }
 
 // Sections and cells:
@@ -162,6 +167,18 @@
         [[FCParseManager sharedInstance] respondToLinkSelection:self.links[indexPath.row]];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - FCViewController method overrides
+
+- (void)barButtonItemTouchedUpOnSide:(UIBarButtonItemSide)side isSelected:(BOOL)isSelected {
+    if (side == UIBarButtonItemSideRight) {
+        [[FCParseManager sharedInstance] setFavorite:isSelected objectOfClass:kParseClassProject withID:self.project.objectId inBackgroundWithBlock:^(PFObject *favorite, NSError *error) {
+            NSLog(@"favorite : %@", favorite);
+            NSLog(@"error : %@", error);
+            if (!error) [self setBarButtonItemOnSide:side isSelected:[favorite[@"isFavorite"] boolValue]];
+        }];
+    }
 }
 
 @end

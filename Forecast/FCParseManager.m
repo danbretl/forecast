@@ -8,6 +8,10 @@
 
 #import "FCParseManager.h"
 
+@interface FCParseManager()
+@property (nonatomic) NSArray * favorites;
+@end
+
 @implementation FCParseManager { }
 
 #pragma mark Lifecycle
@@ -68,6 +72,63 @@
         [query includeKey:@"type"];
         [query findObjectsInBackgroundWithBlock:block];
     }
+}
+
+#pragma mark Users
+
+- (void)incrementUserSessionCount {
+    [[PFUser currentUser] incrementKey:@"sessionCount"];
+    [[PFUser currentUser] saveInBackground];
+}
+
+- (void)setFavorite:(BOOL)isFavorite objectOfClass:(NSString *)objectClass withID:(NSString *)objectID inBackgroundWithBlock:(PFFavoriteResultBlock)block {
+    [PFCloud callFunctionInBackground:@"setFavorite" withParameters:@{@"isFavorite" : @(isFavorite), @"objectClass" : objectClass, @"objectID" : objectID} block:block];
+}
+
+- (void)getFavoritesInBackgroundWithBlock:(PFArrayResultBlock)block {
+    if ([PFUser currentUser]) {
+        PFQuery * query = [PFQuery queryWithClassName:@"Favorite"];
+        [query whereKey:@"user" equalTo:[PFUser currentUser]];
+        [query whereKey:@"isFavorite" equalTo:@(YES)];
+        [query includeKey:@"artist"];
+        [query includeKey:@"project"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                self.favorites = objects;
+                NSLog(@"Found %d favorites for current user", self.favorites.count);
+            }
+            if (block) block(objects, error);
+        }];
+    }
+}
+
+- (BOOL)isFavoriteObjectWithClass:(NSString *)objectClass withID:(NSString *)objectID forceServerCheckInBackgroundWithBlock:(PFFavoriteResultBlock)block {
+    NSUInteger localIndexOfFavorite = NSNotFound;
+    if ([PFUser currentUser] && objectClass && objectID) {
+        if (self.favorites.count > 0) localIndexOfFavorite = [self.favorites indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            BOOL match = NO;
+            PFObject * favorite = obj;
+            if ([favorite[@"isFavorite"] boolValue]) {
+                PFObject * object = favorite[objectClass.lowercaseString];
+                match = [object.objectId isEqualToString:objectID];
+            }
+            return match;
+        }];
+        if (block != NULL) {
+            PFQuery * query = [PFQuery queryWithClassName:@"Favorite"];
+            [query whereKey:@"user" equalTo:[PFUser currentUser]];
+            [query whereKey:@"isFavorite" equalTo:@(YES)];
+            [query whereKey:objectClass.lowercaseString equalTo:[PFObject objectWithoutDataWithClassName:objectClass objectId:objectID]];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                PFObject * object = nil;
+                if (!error && objects.count > 0) {
+                    object = objects[0];
+                }
+                block(object, error);
+            }];
+        }
+    }
+    return localIndexOfFavorite != NSNotFound;
 }
 
 #pragma mark External Links

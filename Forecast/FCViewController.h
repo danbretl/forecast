@@ -23,6 +23,8 @@ typedef enum {
 - (UIBarButtonItem *) setRightBarButtonItemToStarButton;
 - (void) clearRightBarButtonItem;
 
-- (void) barButtonItemTouchedOnSide:(UIBarButtonItemSide)side; // Subclasses should override this method
+- (void) setBarButtonItemOnSide:(UIBarButtonItemSide)side isSelected:(BOOL)isSelected;
+
+- (void) barButtonItemTouchedUpOnSide:(UIBarButtonItemSide)side isSelected:(BOOL)isSelected; // Subclasses should override this method
 
 @end

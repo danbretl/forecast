@@ -61,7 +61,12 @@
         self.links = objects;
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kArtistSectionLinks] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
-
+    
+    // Get whether this artist is a favorite
+    [self setBarButtonItemOnSide:UIBarButtonItemSideRight isSelected:[[FCParseManager sharedInstance] isFavoriteObjectWithClass:kParseClassArtist withID:self.artist.objectId forceServerCheckInBackgroundWithBlock:^(PFObject *favorite, NSError *error) {
+        if (!error) [self setBarButtonItemOnSide:UIBarButtonItemSideRight isSelected:favorite != nil && [favorite[@"isFavorite"] boolValue]];
+    }]];
+    
 }
 
 // Sections and cells:
@@ -105,7 +110,6 @@
     FCSectionHeader * sectionHeader = [[FCSectionHeader alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self tableView:tableView heightForHeaderInSection:section])];
     sectionHeader.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     sectionHeader.label.text = [self tableView:tableView titleForHeaderInSection:section].uppercaseString;
-    NSLog(@"%@", NSStringFromCGRect(sectionHeader.label.frame));
     return sectionHeader;
 }
 
@@ -190,6 +194,18 @@
         [[FCParseManager sharedInstance] respondToLinkSelection:self.links[indexPath.row]];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - FCViewController method overrides
+
+- (void)barButtonItemTouchedUpOnSide:(UIBarButtonItemSide)side isSelected:(BOOL)isSelected {
+    if (side == UIBarButtonItemSideRight) {
+        [[FCParseManager sharedInstance] setFavorite:isSelected objectOfClass:kParseClassArtist withID:self.artist.objectId inBackgroundWithBlock:^(PFObject *favorite, NSError *error) {
+            NSLog(@"favorite : %@", favorite);
+            NSLog(@"error : %@", error);
+            if (!error) [self setBarButtonItemOnSide:side isSelected:[favorite[@"isFavorite"] boolValue]];
+        }];
+    }
 }
 
 @end

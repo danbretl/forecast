@@ -28,7 +28,7 @@
             for (PFObject * object in objects) {
                 FCLocation * location = [FCLocation locationFromPFLocationObject:object];
                 [objectsLocal addObject:location];
-                NSLog(@"Added location object %@", location);
+//                NSLog(@"Added location object %@", location);
             }
             self.locations = objectsLocal;
             [self addLocationsToMap:self.locations];

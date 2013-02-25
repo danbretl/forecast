@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Forecast": {
+            "applicationId": "XeOSvRfKmXY8XThsRV8seVc8RhaKMor4TMpxsOKR", 
+            "masterKey": "bM8xrhVZpsgfMPvIHmjOhoVyFshaC2q8PG2Xhkyx"
+        }, 
+        "_default": {
+            "link": "Forecast"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.1"
+    }
+}

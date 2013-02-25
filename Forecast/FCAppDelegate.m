@@ -25,9 +25,14 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"%@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 
     // Set up Parse
     [Parse setApplicationId:@"XeOSvRfKmXY8XThsRV8seVc8RhaKMor4TMpxsOKR" clientKey:@"zXJtzymbqSh2OOCt6O74dmd01UcKTQEJk14T3Pv1"];
+    // Set up Parse automatic anonymous users
+    [PFUser enableAutomaticUser];
+    [[FCParseManager sharedInstance] incrementUserSessionCount];
+    [[FCParseManager sharedInstance] getFavoritesInBackgroundWithBlock:NULL];
     
     // Parse Admin Utility
     // ...
@@ -66,7 +71,10 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    NSLog(@"%@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[FCParseManager sharedInstance] incrementUserSessionCount];
+    [[FCParseManager sharedInstance] getFavoritesInBackgroundWithBlock:NULL];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
