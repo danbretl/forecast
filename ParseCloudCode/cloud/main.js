@@ -26,6 +26,7 @@ Parse.Cloud.define("setFavorite", function(request, response) {
 		console.log("Setting up query for favorite");
 		var Favorite = Parse.Object.extend("Favorite");
 		var query = new Parse.Query(Favorite);
+		query.equalTo("user", request.user);
 		query.equalTo(request.params.objectClass.toLowerCase(), objectToFavorite);
 		
 		// Execute query
