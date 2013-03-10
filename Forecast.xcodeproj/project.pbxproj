@@ -25,6 +25,8 @@
 		32063B5C166F1A1E00A43EED /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32063B5B166F1A1E00A43EED /* second@2x.png */; };
 		3207AE4D16BF7641007C050A /* FCProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3207AE4C16BF7641007C050A /* FCProjectViewController.m */; };
 		3207AE5116BF7DDF007C050A /* NSNotificationCenter+Forecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 3207AE5016BF7DDF007C050A /* NSNotificationCenter+Forecast.m */; };
+		3214ACAD16EC714900D7441F /* FCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3214ACAC16EC714900D7441F /* FCSearchViewController.m */; };
+		3214ACB316EC73BD00D7441F /* FCCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3214ACB216EC73BD00D7441F /* FCCategoryCell.m */; };
 		322EC03F16C8A9F1006E56A0 /* nav_bar_glass_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 322EC03B16C8A9F1006E56A0 /* nav_bar_glass_dark.png */; };
 		322EC04016C8A9F1006E56A0 /* nav_bar_glass_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 322EC03C16C8A9F1006E56A0 /* nav_bar_glass_dark@2x.png */; };
 		322EC04116C8A9F1006E56A0 /* nav_bar_glass_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 322EC03D16C8A9F1006E56A0 /* nav_bar_glass_light.png */; };
@@ -127,6 +129,10 @@
 		3207AE4F16BF7DDF007C050A /* NSNotificationCenter+Forecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Forecast.h"; sourceTree = "<group>"; };
 		3207AE5016BF7DDF007C050A /* NSNotificationCenter+Forecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Forecast.m"; sourceTree = "<group>"; };
 		3207AE5216BF8502007C050A /* TabBarConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarConstants.h; sourceTree = "<group>"; };
+		3214ACAB16EC714900D7441F /* FCSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSearchViewController.h; sourceTree = "<group>"; };
+		3214ACAC16EC714900D7441F /* FCSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSearchViewController.m; sourceTree = "<group>"; };
+		3214ACB116EC73BD00D7441F /* FCCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCCategoryCell.h; sourceTree = "<group>"; };
+		3214ACB216EC73BD00D7441F /* FCCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCCategoryCell.m; sourceTree = "<group>"; };
 		322EC03B16C8A9F1006E56A0 /* nav_bar_glass_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_bar_glass_dark.png; sourceTree = "<group>"; };
 		322EC03C16C8A9F1006E56A0 /* nav_bar_glass_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_bar_glass_dark@2x.png"; sourceTree = "<group>"; };
 		322EC03D16C8A9F1006E56A0 /* nav_bar_glass_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_bar_glass_light.png; sourceTree = "<group>"; };
@@ -297,10 +303,11 @@
 				32674FA216758D9700291D5D /* Web */,
 				3207AE4E16BF7D8D007C050A /* Utilities */,
 				32B72A9416C8737E00349E1E /* Shared Views */,
-				32B72A9016C868E800349E1E /* UIViewControllerCustomAppearance */,
+				32B72A9016C868E800349E1E /* FCViewController */,
 				3233344A166F38E400B0CC33 /* Map */,
 				3233344E166F390F00B0CC33 /* Artists */,
 				32333451166F396D00B0CC33 /* Projects */,
+				3214ACAA16EC70D200D7441F /* Search */,
 				32063B3B166F1A1E00A43EED /* Supporting Files */,
 			);
 			path = Forecast;
@@ -330,6 +337,17 @@
 				3207AE5016BF7DDF007C050A /* NSNotificationCenter+Forecast.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		3214ACAA16EC70D200D7441F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				3214ACAB16EC714900D7441F /* FCSearchViewController.h */,
+				3214ACAC16EC714900D7441F /* FCSearchViewController.m */,
+				3214ACB116EC73BD00D7441F /* FCCategoryCell.h */,
+				3214ACB216EC73BD00D7441F /* FCCategoryCell.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		322EC04716C8AB74006E56A0 /* Assorted Images */ = {
@@ -493,13 +511,13 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		32B72A9016C868E800349E1E /* UIViewControllerCustomAppearance */ = {
+		32B72A9016C868E800349E1E /* FCViewController */ = {
 			isa = PBXGroup;
 			children = (
 				32B72A9116C8691A00349E1E /* FCViewController.h */,
 				32B72A9216C8691A00349E1E /* FCViewController.m */,
 			);
-			name = UIViewControllerCustomAppearance;
+			name = FCViewController;
 			sourceTree = "<group>";
 		};
 		32B72A9416C8737E00349E1E /* Shared Views */ = {
@@ -667,6 +685,8 @@
 				32B72A9B16C88AC200349E1E /* FCNeverClearView.m in Sources */,
 				32B72A9E16C88C1E00349E1E /* FCTableViewCell.m in Sources */,
 				32B72AA116C895E200349E1E /* FCColoredDisclosureIndicator.m in Sources */,
+				3214ACAD16EC714900D7441F /* FCSearchViewController.m in Sources */,
+				3214ACB316EC73BD00D7441F /* FCCategoryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

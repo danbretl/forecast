@@ -24,6 +24,7 @@ typedef void (^PFFavoriteResultBlock)(PFObject * favorite, NSError * error);
 
 #pragma mark Data Retrieval
 
+- (void) getCategoriesInBackgroundWithBlock:(PFArrayResultBlock)block; // Gets all categories in the database at once.
 - (void) getArtistsInBackgroundWithBlock:(PFArrayResultBlock)block; // Gets all artists in the database at once. Could be dangerous once there are a lot of objects there!
 - (void) getProjectsForArtistWithID:(NSString *)artistID inBackgroundWithBlock:(PFArrayResultBlock)block; // Gets all projects for given artist. If artistID is nil, Gets all projects in the database at once. Could be dangerous once there are a lot of objects there!
 - (void) getLocationsForProjectWithID:(NSString *)projectID inBackgroundWithBlock:(PFArrayResultBlock)block; // Gets all locations for given project. If projectID is nil, gets all locations in the database at once. Could be dangerous once there are a lot of objects there!

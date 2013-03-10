@@ -27,6 +27,12 @@
 
 #pragma mark Data Retrieval
 
+- (void)getCategoriesInBackgroundWithBlock:(PFArrayResultBlock)block {
+    PFQuery * query = [PFQuery queryWithClassName:@"Category"];
+    [query orderByAscending:@"name"];
+    [query findObjectsInBackgroundWithBlock:block];
+}
+
 - (void)getArtistsInBackgroundWithBlock:(PFArrayResultBlock)block {
     PFQuery * query = [PFQuery queryWithClassName:@"Artist"];
     [query orderByAscending:@"name"];
