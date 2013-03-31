@@ -18,6 +18,8 @@
 - (void) backBarButtonItemTouchedUp;
 - (void) leftBarButtonItemTouchedUp:(UIButton *)button;
 - (void) rightBarButtonItemTouchedUp:(UIButton *)button;
+@property (nonatomic) UIBarButtonItemSpecial leftBarButtonItemSpecial;
+@property (nonatomic) UIBarButtonItemSpecial rightBarButtonItemSpecial;
 @end
 
 @implementation FCViewController
@@ -36,14 +38,17 @@
 }
 
 - (UIBarButtonItem *)setBackBarButtonItemToArrowButton {
+    self.leftBarButtonItemSpecial = UIBarButtonItemSpecialNone;
     return [self setBarButtonItemOnSide:UIBarButtonItemSideLeft isBackButton:YES selectedOnTouchDown:NO toCustomButtonWithImageNormal:@"nav_bar_back_light" isImageNormalLight:YES imageHighlighted:@"nav_bar_back_dark" isImageHighlightedLight:NO];
 }
 
 - (UIBarButtonItem *)setRightBarButtonItemToSearchButton {
+    self.rightBarButtonItemSpecial = UIBarButtonItemSpecialSearch;
     return [self setBarButtonItemOnSide:UIBarButtonItemSideRight isBackButton:NO selectedOnTouchDown:NO toCustomButtonWithImageNormal:@"nav_bar_glass_light" isImageNormalLight:YES imageHighlighted:@"nav_bar_glass_dark" isImageHighlightedLight:NO];
 }
 
 - (UIBarButtonItem *)setRightBarButtonItemToStarButton {
+    self.rightBarButtonItemSpecial = UIBarButtonItemSpecialStar;
     UIBarButtonItem * barButtonItem = [self setBarButtonItemOnSide:UIBarButtonItemSideRight isBackButton:NO selectedOnTouchDown:YES toCustomButtonWithImageNormal:@"nav_bar_star_light" isImageNormalLight:YES imageHighlighted:@"nav_bar_star_light_filled" isImageHighlightedLight:YES];
     return barButtonItem;
 }
@@ -124,8 +129,10 @@
 - (void)clearBarButtonItemOnSide:(UIBarButtonItemSide)side {
     if (side == UIBarButtonItemSideLeft) {
         self.navigationItem.leftBarButtonItem = nil;
+        self.leftBarButtonItemSpecial = UIBarButtonItemSpecialNone;
     } else if (side == UIBarButtonItemSideRight) {
         self.navigationItem.rightBarButtonItem = nil;
+        self.rightBarButtonItemSpecial = UIBarButtonItemSpecialNone;
     }
 }
 
@@ -155,11 +162,31 @@
 }
 
 - (void)leftBarButtonItemTouchedUp:(UIButton *)button {
-    [self barButtonItemTouchedUpOnSide:UIBarButtonItemSideLeft isSelected:button.selected];
+    [self barButtonItemTouchedUpOnSide:UIBarButtonItemSideLeft asSpecialButton:self.leftBarButtonItemSpecial isSelected:button.isSelected];
 }
 
 - (void)rightBarButtonItemTouchedUp:(UIButton *)button {
-    [self barButtonItemTouchedUpOnSide:UIBarButtonItemSideRight isSelected:button.selected];
+    [self barButtonItemTouchedUpOnSide:UIBarButtonItemSideRight asSpecialButton:self.rightBarButtonItemSpecial isSelected:button.isSelected];
+}
+
+- (void)barButtonItemTouchedUpOnSide:(UIBarButtonItemSide)side asSpecialButton:(UIBarButtonItemSpecial)specialButton isSelected:(BOOL)isSelected {
+    NSLog(@"barButtonItemTouchedUpOnSide:%d asSpecialButton:%d isSelected:%d", side, specialButton, isSelected);
+    switch (specialButton) {
+            
+        case UIBarButtonItemSpecialSearch:
+            [self setIsSearchVisible:!self.isSearchVisible animated:YES];
+            break;
+            
+        case UIBarButtonItemSpecialStar:
+            [self.favoritesController setFavorite:isSelected];
+            break;
+            
+        case UIBarButtonItemSpecialNone:
+        default:
+            [self barButtonItemTouchedUpOnSide:UIBarButtonItemSideLeft isSelected:isSelected];
+            break;
+            
+    }
 }
 
 - (void)barButtonItemTouchedUpOnSide:(UIBarButtonItemSide)side isSelected:(BOOL)isSelected {
@@ -206,6 +233,13 @@
     }
 }
 
+- (FCFavoritesController *)favoritesController {
+    if (_favoritesController == nil) {
+        _favoritesController = [[FCFavoritesController alloc] initWithDelegate:self];
+    }
+    return _favoritesController;
+}
+
 - (FCSearchViewController *)searchViewController {
     NSUInteger searchViewControllerIndex = [self.childViewControllers indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         return [obj isKindOfClass:[FCSearchViewController class]];
@@ -213,8 +247,33 @@
     FCSearchViewController * searchViewController = nil;
     if (searchViewControllerIndex != NSNotFound) {
         searchViewController = self.childViewControllers[searchViewControllerIndex];
+        searchViewController.delegate = self;
     }
     return searchViewController;
+}
+
+#pragma mark - FCFavoritesControllerDelegate
+
+- (NSString *)objectClassForFavoritesController:(FCFavoritesController *)favoritesController { return nil; }
+- (NSString *)objectIDForFavoritesController:(FCFavoritesController *)favoritesController    { return nil; }
+- (void)favoritesController:(FCFavoritesController *)favoritesController willMakeObjectOfClass:(NSString *)objectClass withObjectID:(NSString *)objectID favorite:(BOOL)makeFavorite { /* ... */ }
+- (void)favoritesController:(FCFavoritesController *)favoritesController didMakeObjectOfClass:(NSString *)objectClass withObjectID:(NSString *)objectID favorite:(BOOL)makeFavorite error:(NSError *)error {
+    if (!error) {
+        if (self.leftBarButtonItemSpecial == UIBarButtonItemSpecialStar)
+            [self setBarButtonItemOnSide:UIBarButtonItemSideLeft isSelected:makeFavorite];
+        if (self.rightBarButtonItemSpecial == UIBarButtonItemSpecialStar)
+            [self setBarButtonItemOnSide:UIBarButtonItemSideRight isSelected:makeFavorite];
+    }
+}
+
+#pragma mark - FCSearchViewControllerDelegate
+
+- (void)searchViewControllerWillFindObjects:(FCSearchViewController *)searchViewController {
+    // ...
+}
+
+- (void)searchViewController:(FCSearchViewController *)searchViewController didFindObjects:(NSArray *)objects error:(NSError *)error {
+    // ...
 }
 
 @end

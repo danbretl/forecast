@@ -24,5 +24,7 @@
 @end
 
 @protocol FCSearchViewControllerDelegate <NSObject>
-- (void) searchViewController:(FCSearchViewController *)searchViewController didFindObjects:(NSArray *)objects;
+@optional
+- (void) searchViewControllerWillFindObjects:(FCSearchViewController *)searchViewController;
+- (void) searchViewController:(FCSearchViewController *)searchViewController didFindObjects:(NSArray *)objects error:(NSError *)error;
 @end

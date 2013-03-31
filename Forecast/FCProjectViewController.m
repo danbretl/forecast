@@ -169,16 +169,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - FCViewController method overrides
+#pragma mark - FCFavoritesControllerDelegate
 
-- (void)barButtonItemTouchedUpOnSide:(UIBarButtonItemSide)side isSelected:(BOOL)isSelected {
-    if (side == UIBarButtonItemSideRight) {
-        [[FCParseManager sharedInstance] setFavorite:isSelected objectOfClass:kParseClassProject withID:self.project.objectId inBackgroundWithBlock:^(PFObject *favorite, NSError *error) {
-            NSLog(@"favorite : %@", favorite);
-            NSLog(@"error : %@", error);
-            if (!error) [self setBarButtonItemOnSide:side isSelected:[favorite[@"isFavorite"] boolValue]];
-        }];
-    }
+- (NSString *)objectClassForFavoritesController:(FCFavoritesController *)favoritesController {
+    return kParseClassProject;
+}
+
+- (NSString *)objectIDForFavoritesController:(FCFavoritesController *)favoritesController {
+    return self.project.objectId;
 }
 
 @end

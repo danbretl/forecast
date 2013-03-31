@@ -68,7 +68,15 @@
 }
 
 - (void)searchForObjects {
-    
+    if ([self.delegate respondsToSelector:@selector(searchViewControllerWillFindObjects:)]) {
+        [self.delegate searchViewControllerWillFindObjects:self];
+    }
+    // ...
+    // ...
+    // ...
+    if ([self.delegate respondsToSelector:@selector(searchViewController:didFindObjects:error:)]) {
+        [self.delegate searchViewController:self didFindObjects:nil error:nil];
+    }
 }
 
 @end

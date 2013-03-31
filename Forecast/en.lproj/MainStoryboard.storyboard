@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3103" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -24,7 +24,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="rxO-fD-W1a" kind="embed" id="YaT-Ke-Cic"/>
+                                    <segue destination="rxO-fD-W1a" kind="embed" identifier="EmbedSearchMap" id="YaT-Ke-Cic"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -145,6 +145,14 @@
                                     <outlet property="delegate" destination="MsN-ti-Lt9" id="ATN-6q-90i"/>
                                 </connections>
                             </tableView>
+                            <containerView contentMode="scaleToFill" id="38b-Wl-8tE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="288"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="rxO-fD-W1a" kind="embed" identifier="EmbedSearchProjects" id="fQX-bf-wte"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -153,6 +161,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="searchContainerView" destination="38b-Wl-8tE" id="p9D-qL-QK9"/>
                         <outlet property="tableView" destination="Vuh-bM-u3W" id="mw0-yY-jCC"/>
                     </connections>
                 </viewController>
@@ -298,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Qs-AJ-asB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1354" y="875"/>
+            <point key="canvasLocation" x="1528" y="935"/>
         </scene>
         <!--Artists View Controller - Artists-->
         <scene sceneID="13">
@@ -346,6 +355,14 @@
                                     <outlet property="delegate" destination="3" id="B1f-tI-byD"/>
                                 </connections>
                             </tableView>
+                            <containerView contentMode="scaleToFill" id="dwU-yY-aZn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="288"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="rxO-fD-W1a" kind="embed" identifier="EmbedSearchArtists" id="UOj-0y-Yp2"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -353,6 +370,7 @@
                         <barButtonItem key="backBarButtonItem" title="Artists" id="gPQ-0s-C1f"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchContainerView" destination="dwU-yY-aZn" id="d6B-RP-mrs"/>
                         <outlet property="tableView" destination="7vr-6S-bFO" id="5dK-u8-80v"/>
                     </connections>
                 </viewController>
@@ -526,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxn-Lu-1KF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1354" y="80"/>
+            <point key="canvasLocation" x="1528" y="134"/>
         </scene>
         <!--Tab Bar Controller - TabBarController-->
         <scene sceneID="15">
@@ -634,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gch-uh-oVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1354" y="-476"/>
+            <point key="canvasLocation" x="1465" y="-476"/>
         </scene>
     </scenes>
     <classes>
@@ -751,4 +769,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="fQX-bf-wte"/>
+    </inferredMetricsTieBreakers>
 </document>

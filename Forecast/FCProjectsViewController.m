@@ -41,6 +41,10 @@
     if ([segue.identifier isEqualToString:@"ViewProject"]) {
         FCProjectViewController * projectViewController = segue.destinationViewController;
         projectViewController.project = self.projects[[self.tableView indexPathForCell:sender].row];
+    } else if ([segue.identifier isEqualToString:@"EmbedSearchProjects"]) {
+        FCSearchViewController * searchViewController = segue.destinationViewController;
+        searchViewController.shouldSearchArtists = NO;
+        searchViewController.shouldSearchProjects = YES;
     }
 }
 

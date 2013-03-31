@@ -10,13 +10,21 @@
 
 #import <UIKit/UIKit.h>
 #import "FCSearchViewController.h"
+#import "FCFavoritesController.h"
+#import "FCParseManager.h"
 
 typedef enum {
     UIBarButtonItemSideLeft  = 1,
     UIBarButtonItemSideRight = 2,
 } UIBarButtonItemSide;
 
-@interface FCViewController : UIViewController
+typedef enum {
+    UIBarButtonItemSpecialNone = 0,
+    UIBarButtonItemSpecialSearch = 1,
+    UIBarButtonItemSpecialStar = 2,
+} UIBarButtonItemSpecial;
+
+@interface FCViewController : UIViewController<FCFavoritesControllerDelegate, FCSearchViewControllerDelegate>
 
 - (UIBarButtonItem *) setBackBarButtonItemToArrowButton;
 - (void) clearLeftBarButtonItem;
@@ -37,5 +45,7 @@ typedef enum {
 @property (nonatomic, weak, readonly) FCSearchViewController * searchViewController;
 @property (nonatomic) BOOL isSearchVisible; // Not animated
 - (void) setIsSearchVisible:(BOOL)shouldBeVisible animated:(BOOL)animated;
+
+@property (nonatomic) FCFavoritesController * favoritesController;
 
 @end

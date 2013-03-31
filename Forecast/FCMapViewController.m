@@ -40,6 +40,16 @@
     
 }
 
+#pragma mark Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EmbedSearchMap"]) {
+        FCSearchViewController * searchViewController = segue.destinationViewController;
+        searchViewController.shouldSearchArtists = YES;
+        searchViewController.shouldSearchProjects = YES;
+    }
+}
+
 - (void)addLocationsToMap:(NSArray *)locations {
     [self.mapView addAnnotations:locations];
 }

@@ -41,6 +41,10 @@
     if ([segue.identifier isEqualToString:@"ViewArtist"]) {
         FCArtistViewController * artistViewController = segue.destinationViewController;
         artistViewController.artist = self.artists[[self.tableView indexPathForCell:sender].row];
+    } else if ([segue.identifier isEqualToString:@"EmbedSearchArtists"]) {
+        FCSearchViewController * searchViewController = segue.destinationViewController;
+        searchViewController.shouldSearchArtists = YES;
+        searchViewController.shouldSearchProjects = NO;
     }
 }
 
