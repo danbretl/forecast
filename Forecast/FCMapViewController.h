@@ -14,6 +14,6 @@
 
 @property (nonatomic) NSArray * locations; // Array of FCLocation objects
 
-@property (nonatomic) IBOutlet MKMapView * mapView;
+@property (nonatomic, weak) IBOutlet MKMapView * mapView;
 
 @end

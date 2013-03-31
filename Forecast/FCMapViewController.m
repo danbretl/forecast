@@ -21,7 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setRightBarButtonItemToSearchButton];
+    
     if (self.locations.count == 0) {
         [[FCParseManager sharedInstance] getLocationsForProjectWithID:nil inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             NSMutableArray * objectsLocal = [NSMutableArray array];
@@ -35,6 +37,7 @@
             [self zoomToMinnesotaAnimated:YES];
         }];
     }
+    
 }
 
 - (void)addLocationsToMap:(NSArray *)locations {
@@ -72,5 +75,11 @@
 //- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
 //    NSLog(@"(%f, %f) - (%f, %f)", mapView.region.center.latitude, mapView.region.center.longitude, mapView.region.span.latitudeDelta, mapView.region.span.longitudeDelta);
 //}
+
+- (void)barButtonItemTouchedUpOnSide:(UIBarButtonItemSide)side isSelected:(BOOL)isSelected {
+    if (side == UIBarButtonItemSideRight) {
+        [self setIsSearchVisible:!self.isSearchVisible animated:YES];
+    }
+}
 
 @end

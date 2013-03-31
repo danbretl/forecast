@@ -13,6 +13,7 @@
 @property (nonatomic, weak) IBOutlet PFImageView * categoryImageView;
 @property (nonatomic, weak) IBOutlet UILabel * categoryLabel;
 
+- (void) setViewsForFavorites;
 - (void) setViewsForCategory:(PFObject *)category;
 
 @end

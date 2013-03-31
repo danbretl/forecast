@@ -8,8 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FCSearchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@protocol FCSearchViewControllerDelegate;
+
+@interface FCSearchViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic) NSArray * categories;
+@property (nonatomic) BOOL shouldSearchProjects;
+@property (nonatomic) BOOL shouldSearchArtists;
+- (void) searchForObjects;
 
+@property (nonatomic, weak) IBOutlet UITextField * searchTextField;
+
+@property (nonatomic, weak) id<FCSearchViewControllerDelegate> delegate;
+
+@end
+
+@protocol FCSearchViewControllerDelegate <NSObject>
+- (void) searchViewController:(FCSearchViewController *)searchViewController didFindObjects:(NSArray *)objects;
 @end

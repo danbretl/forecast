@@ -27,6 +27,12 @@
     // Customize appearance
     // Navigation Bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar_bg_str"] forBarMetrics:UIBarMetricsDefault];
+    // Search Container View
+    self.searchContainerViewVisibleAlpha = 0.75;
+    self.searchContainerViewHiddenAlpha = 0.0;
+    self.searchContainerViewVisibleOriginY = 0;
+    self.searchContainerViewHiddenOriginY = self.searchContainerViewVisibleOriginY - self.searchContainerView.frame.size.height;
+    [self showSearchViews:self.isSearchVisible animated:NO];
 }
 
 - (UIBarButtonItem *)setBackBarButtonItemToArrowButton {
@@ -160,6 +166,55 @@
     // ...
     // Subclasses should override this method.
     // ...
+}
+
+- (void)setIsSearchVisible:(BOOL)isSearchVisible {
+    [self setIsSearchVisible:isSearchVisible animated:NO];
+}
+
+- (void)setIsSearchVisible:(BOOL)shouldBeVisible animated:(BOOL)animated {
+    if (_isSearchVisible != shouldBeVisible) {
+        _isSearchVisible = shouldBeVisible;
+        [self showSearchViews:self.isSearchVisible animated:animated];
+    }
+}
+
+- (void) showSearchViews:(BOOL)shouldShowSearch animated:(BOOL)animated {
+    void(^viewChangesBlock)(void) = ^{
+        self.searchContainerView.alpha = shouldShowSearch ? self.searchContainerViewVisibleAlpha : self.searchContainerViewHiddenAlpha;
+        CGRect searchContainerViewFrame = self.searchContainerView.frame;
+        searchContainerViewFrame.origin.y = shouldShowSearch ? self.searchContainerViewVisibleOriginY : self.searchContainerViewHiddenOriginY;
+        self.searchContainerView.frame = searchContainerViewFrame;
+    };
+    void(^firstResponderBlock)(void) = ^{
+        if (shouldShowSearch) {
+            [self.searchViewController.searchTextField becomeFirstResponder];
+        } else {
+            [self.searchViewController.searchTextField resignFirstResponder];
+        }
+    };
+    if (animated) {
+        [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            viewChangesBlock();
+            firstResponderBlock();
+        } completion:^(BOOL finished) {
+            // ...
+        }];
+    } else {
+        viewChangesBlock();
+        firstResponderBlock();
+    }
+}
+
+- (FCSearchViewController *)searchViewController {
+    NSUInteger searchViewControllerIndex = [self.childViewControllers indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [obj isKindOfClass:[FCSearchViewController class]];
+    }];
+    FCSearchViewController * searchViewController = nil;
+    if (searchViewControllerIndex != NSNotFound) {
+        searchViewController = self.childViewControllers[searchViewControllerIndex];
+    }
+    return searchViewController;
 }
 
 @end
