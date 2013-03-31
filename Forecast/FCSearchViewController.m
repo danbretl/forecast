@@ -27,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setSearchPlaceholderTextForCurrentScope];
+    
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = YES;
     
@@ -36,6 +38,20 @@
             [self.collectionView reloadData];
         }];
     }
+}
+
+- (void)setShouldSearchProjects:(BOOL)shouldSearchProjects {
+    _shouldSearchProjects = shouldSearchProjects;
+    [self setSearchPlaceholderTextForCurrentScope];
+}
+
+- (void)setShouldSearchArtists:(BOOL)shouldSearchArtists {
+    _shouldSearchArtists = shouldSearchArtists;
+    [self setSearchPlaceholderTextForCurrentScope];
+}
+
+- (void)setSearchPlaceholderTextForCurrentScope {
+    self.searchTextField.placeholder = [NSString stringWithFormat:@"%@%@%@", self.shouldSearchProjects ? @"Project" : @"", self.shouldSearchProjects && self.shouldSearchArtists ? @" or " : @"", self.shouldSearchArtists ? @"Artist" : @""];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
