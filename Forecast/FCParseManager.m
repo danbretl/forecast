@@ -49,6 +49,14 @@
     [query includeKey:@"artist"];
     [query findObjectsInBackgroundWithBlock:block];
 }
+
+- (void)getSearchResultsForTerm:(NSString *)searchTerm includeProjects:(BOOL)searchProjects andArtists:(BOOL)searchArtists inBackgroundWithBlock:(PFArrayResultBlock)block {
+    // ...
+    // ...
+    // ...
+    block(nil, nil);
+}
+
 - (void)getLocationsForProjectWithID:(NSString *)projectID inBackgroundWithBlock:(PFArrayResultBlock)block {
     PFQuery * query = [PFQuery queryWithClassName:@"Location"];
     if (projectID) {

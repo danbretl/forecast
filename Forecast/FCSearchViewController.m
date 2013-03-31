@@ -87,12 +87,14 @@
     if ([self.delegate respondsToSelector:@selector(searchViewControllerWillFindObjects:)]) {
         [self.delegate searchViewControllerWillFindObjects:self];
     }
-    // ...
-    // ...
-    // ...
-    if ([self.delegate respondsToSelector:@selector(searchViewController:didFindObjects:error:)]) {
-        [self.delegate searchViewController:self didFindObjects:nil error:nil];
-    }
+    [[FCParseManager sharedInstance] getSearchResultsForTerm:self.searchTextField.text includeProjects:self.shouldSearchProjects andArtists:self.shouldSearchArtists inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"[FCParseManager sharedInstance] getSearchResultsForTerm:%@ includeProjects:%d andArtists:%d", self.searchTextField.text, self.shouldSearchProjects, self.shouldSearchArtists);
+        NSLog(@"  objects = %@", objects);
+        NSLog(@"  error   = %@", error);
+        if ([self.delegate respondsToSelector:@selector(searchViewController:didFindObjects:error:)]) {
+            [self.delegate searchViewController:self didFindObjects:objects error:error];
+        }
+    }];
 }
 
 @end
