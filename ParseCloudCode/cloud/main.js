@@ -58,14 +58,28 @@ Parse.Cloud.define("setFavorite", function(request, response) {
 	
 });
 
-// Project
-// - title
-// - description
 // Artist
 // - name
 // - bio
 // - statement
 Parse.Cloud.afterSave("Artist", function(request) {
+//   query = new Parse.Query("SearchItem");
+//   query.get(request.object.get("artist").id, {
+//     success: function(searchItem) {
+//       searchItem.text = 
+//       post.increment("comments");
+//       post.save();
+//     },
+//     error: function(error) {
+//       throw "Got an error " + error.code + " : " + error.message;
+//     }
+//   });
+});
+
+// Project
+// - title
+// - description
+Parse.Cloud.afterSave("Project", function(request) {
 //   query = new Parse.Query("SearchItem");
 //   query.get(request.object.get("artist").id, {
 //     success: function(searchItem) {
