@@ -1,10 +1,3 @@
-
-// Use Parse.Cloud.define to define as many cloud functions as you want.
-// For example:
-Parse.Cloud.define("hello", function(request, response) {
-	response.success("Hello world!");
-});
-
 // setFavorite
 // - check that isFavorite, user, objectClass, and objectID have all been specified
 // - find any existing Favorite object with specified user and (artist or project)
@@ -63,4 +56,25 @@ Parse.Cloud.define("setFavorite", function(request, response) {
 		response.error("missing parameters");
 	}
 	
+});
+
+// Project
+// - title
+// - description
+// Artist
+// - name
+// - bio
+// - statement
+Parse.Cloud.afterSave("Artist", function(request) {
+//   query = new Parse.Query("SearchItem");
+//   query.get(request.object.get("artist").id, {
+//     success: function(searchItem) {
+//       searchItem.text = 
+//       post.increment("comments");
+//       post.save();
+//     },
+//     error: function(error) {
+//       throw "Got an error " + error.code + " : " + error.message;
+//     }
+//   });
 });
