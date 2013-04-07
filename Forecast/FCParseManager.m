@@ -51,10 +51,16 @@
 }
 
 - (void)getSearchResultsForTerm:(NSString *)searchTerm includeProjects:(BOOL)searchProjects andArtists:(BOOL)searchArtists inBackgroundWithBlock:(PFArrayResultBlock)block {
-    // ...
-    // ...
-    // ...
-    block(nil, nil);
+    PFQuery * query = [PFQuery queryWithClassName:@"SearchItem"];
+    if (!(searchProjects && searchArtists)) {
+        if (searchProjects) {
+            [query whereKeyExists:@"project"];
+        } else if (searchArtists) {
+            [query whereKeyExists:@"artist"];
+        }
+    }
+    [query whereKey:@"text" containsString:searchTerm];
+    [query findObjectsInBackgroundWithBlock:block];
 }
 
 - (void)getLocationsForProjectWithID:(NSString *)projectID inBackgroundWithBlock:(PFArrayResultBlock)block {
