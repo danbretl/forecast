@@ -59,7 +59,7 @@
             [query whereKeyExists:@"artist"];
         }
     }
-    [query whereKey:@"text" containsString:searchTerm];
+    [query whereKey:@"text" containsString:[searchTerm.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     [query findObjectsInBackgroundWithBlock:block];
 }
 
