@@ -63,6 +63,7 @@ function saveSearchItem(searchableObject, searchableObjectClassName, searchableO
 	// Set up SearchItem query
 	var SearchItem = Parse.Object.extend("SearchItem");
 	var query = new Parse.Query(SearchItem);
+	query.equalTo("type", searchableObjectClassName);
 	query.equalTo(searchableObjectClassName.toLowerCase(), searchableObject);
 
 	// Execute SearchItem query
@@ -139,6 +140,7 @@ function saveSearchItemCategoriesForArtist(artist, artistSearchItem) {
 			} else {
 				var SearchItem = Parse.Object.extend("SearchItem");
 				var query = new Parse.Query(SearchItem);
+				query.equalTo("type", "Artist");
 				query.equalTo("artist", artist);
 				query.first({
 					success: function(searchItem) {
