@@ -50,7 +50,7 @@
     [query findObjectsInBackgroundWithBlock:block];
 }
 
-- (void)getSearchResultsForTerm:(NSString *)searchTerm includeProjects:(BOOL)searchProjects andArtists:(BOOL)searchArtists favoritesOnly:(BOOL)favoritesOnly inCategoriesWithCategoryIDs:(NSArray *)categoryIDs inBackgroundWithBlock:(PFArrayResultBlock)block {
+- (void)getSearchResultsForTerm:(NSString *)searchTerm includeProjects:(BOOL)searchProjects andArtists:(BOOL)searchArtists favoritesOnly:(BOOL)favoritesOnly inCategoriesWithCategoryIDs:(NSArray *)categoryIDs returnLocations:(BOOL)shouldReturnLocations inBackgroundWithBlock:(PFArrayResultBlock)block {
     NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
     parameters[@"term"] = searchTerm;
     NSMutableArray * searchClasses = [NSMutableArray array];
@@ -58,6 +58,7 @@
     if (searchArtists)  [searchClasses addObject:@"Artist"];
     parameters[@"classes"] = searchClasses;
     parameters[@"favoritesOnly"] = @(favoritesOnly);
+    parameters[@"returnLocations"] = @(shouldReturnLocations);
     if (categoryIDs.count > 0) parameters[@"categoryIDs"] = categoryIDs;
     
     [PFCloud callFunctionInBackground:@"search" withParameters:parameters block:block];

@@ -72,10 +72,7 @@ function saveSearchItem(searchableObject, searchableObjectClassName, searchableO
 
 			if (searchItem === undefined) {
 				console.log("Existing SearchItem not found");
-				// Create searchItem
 				searchItem = new SearchItem();
-				// Link searchItem to object
-				searchItem.set(searchableObjectClassName.toLowerCase(), searchableObject);
 			} else {
 				console.log("Existing SearchItem found - " + searchItem);
 			}
@@ -91,20 +88,23 @@ function saveSearchItem(searchableObject, searchableObjectClassName, searchableO
 			
 			// Save searchItem with updated searchText
 			console.log("Saving SearchItem with searchable text " + searchText);
+			searchItem.set(searchableObjectClassName.toLowerCase(), searchableObject);
+			searchItem.set("type", searchableObjectClassName);
 			searchItem.set("text", searchText);
-			if (searchableObjectClassName === "Project") {
+			var artist;
+			if (searchableObjectClassName === "Artist") {
+				artist = searchableObject;
+			} else if (searchableObjectClassName === "Project") {
+				artist = searchableObject.get("artist");
 				searchItem.set("categories", [searchableObject.get("category")]);
 			}
+			searchItem.set("artist", artist);
 			searchItem.save(null, {
 				success: function(searchItem) {
 					console.log("SearchItem saved - " + searchItem);
-					var artist;
 					var artistSearchItem;
 					if (searchableObjectClassName === "Artist") {
-						 artist = searchableObject;
 						 artistSearchItem = searchItem;
-					} else if (searchableObjectClassName === "Project") {
-						artist = searchableObject.get("artist");
 					}
 					saveSearchItemCategoriesForArtist(artist, artistSearchItem);
 				},
@@ -168,20 +168,29 @@ function setArtistSearchItemCategories(searchItem, categories) {
 	});
 }
 
-// Artist
+// Artist - beforeSave
+Parse.Cloud.beforeSave("Artist", function(request, response) {
+	var nameLowercase = request.object.get("name").toLowerCase();
+	request.object.set("nameLowercase", nameLowercase);
+	response.success();
+});
+
+// Artist - afterSave
 // Searchable text should include "name", "bio", "statement"
 Parse.Cloud.afterSave("Artist", function(request) {
 	saveSearchItem(request.object, "Artist", ["name", "bio", "statement"]);
 });
 
-// Project
+// Project - afterSave
 // Searchable text should include "title", "description"
 Parse.Cloud.afterSave("Project", function(request) {
 	saveSearchItem(request.object, "Project", ["title", "description"]);
 });
 
-function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects, filterFavoriteArtists, filterFavoriteProjects, response) {
+function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects, filterFavoriteArtists, filterFavoriteProjects, shouldReturnLocations, response) {
+	console.log("searchFor term:" + term + " categoryIDs: " + categoryIDs + " shouldSearchArtists: " + shouldSearchArtists + " shouldSearchProjects: " + shouldSearchProjects + " filterFavoriteArtists: " + filterFavoriteArtists + " filterFavoriteProjects: " + filterFavoriteProjects + " shouldReturnLocations: " + shouldReturnLocations);
 
+	var shouldSearchText = !(term === undefined || term.length == 0);
 	var shouldFilterArtists  = !(filterFavoriteArtists  === undefined);
 	var shouldFilterProjects = !(filterFavoriteProjects === undefined);
 	shouldSearchArtists  = shouldSearchArtists  && (!shouldFilterArtists  || filterFavoriteArtists.length  > 0);
@@ -192,20 +201,45 @@ function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects,
 	var querySearch;
 	var querySearchArtist;
 	var querySearchProject;
-
+	
 	if (shouldSearchArtists) {
 		querySearchArtist = new Parse.Query(SearchItem);
+		querySearchArtist.equalTo("type", "Artist");
 		querySearchArtist.exists("artist");
 		if (shouldFilterArtists) {
 			querySearchArtist.containedIn("artist", filterFavoriteArtists);
 		}
+		if (shouldSearchText) {
+			querySearchArtist.contains("text", term);
+		}
 	}
 	if (shouldSearchProjects) {
-		querySearchProject = new Parse.Query(SearchItem);
-		querySearchProject.exists("project");
+		var querySearchProjectDirect = new Parse.Query(SearchItem);
 		if (shouldFilterProjects) {
-			querySearchProject.containedIn("project", filterFavoriteProjects);
+			querySearchProjectDirect.containedIn("project", filterFavoriteProjects);
 		}
+		if (shouldSearchText) {
+			querySearchProjectDirect.contains("text", term);
+		}
+		var querySearchProjectForFavoriteArtists;
+		if (shouldFilterArtists && filterFavoriteArtists.length > 0) {
+			console.log("shouldFilterArtists && filterFavoriteArtists.length > 0");
+			querySearchProjectForFavoriteArtists = new Parse.Query(SearchItem);
+			if (shouldSearchText) {
+				var Artist = Parse.Object.extend("Artist");
+				var queryArtistName = new Parse.Query(Artist);
+				queryArtistName.contains("nameLowercase", term);
+				querySearchProjectForFavoriteArtists.matchesQuery("artist", queryArtistName);
+			}
+			querySearchProjectForFavoriteArtists.containedIn("artist", filterFavoriteArtists);
+		}
+		if (querySearchProjectForFavoriteArtists === undefined) {
+			querySearchProject = querySearchProjectDirect;
+		} else {
+			querySearchProject = Parse.Query.or(querySearchProjectDirect, querySearchProjectForFavoriteArtists);
+		}
+		querySearchProject.equalTo("type", "Project");
+		querySearchProject.exists("project");
 	}
 
 	if (shouldSearchAll) {
@@ -216,10 +250,6 @@ function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects,
 		} else if (shouldSearchProjects) {
 			querySearch = querySearchProject;
 		}
-	}
-
-	if (!(term === undefined || term.length == 0)) {
-		querySearch.contains("text", term);
 	}
 
 	if (!(categoryIDs === undefined || categoryIDs.length == 0)) {
@@ -242,11 +272,20 @@ function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects,
 
 	querySearch.find({
 		success: function(results) {
-			response.success(results);
+			if (!shouldReturnLocations) {
+				response.success(results);
+			} else {
+				// ...
+				// ...
+				// ...
+				response.success(results);
+				// ...
+				// ...
+				// ...
+			}
 		},
 		error: function(error) {
 			response.error("querying for search items - [" + error.code + " : " + error.message + "]");
-			throw "querying for search items - [" + error.code + " : " + error.message + "]";
 		}
 	});
 
@@ -258,7 +297,9 @@ Parse.Cloud.define("search", function(request, response) {
 		(request.params.favoritesOnly === undefined || request.params.favoritesOnly == false)) {
 		response.error("missing parameters");
 	} else {
+
 		var searchTerm = request.params.term.toLowerCase();
+		var shouldReturnLocations = (request.params.returnLocations !== undefined && request.params.returnLocations === true);
 
 		var shouldSearchAll = (request.params.classes === undefined || request.params.classes.length == 0);
 		var shouldSearchArtists  = shouldSearchAll || request.params.classes.indexOf("Artist")  != -1;
@@ -272,7 +313,7 @@ Parse.Cloud.define("search", function(request, response) {
 			request.params.favoritesOnly === undefined ||
 			request.params.favoritesOnly == false) {
 
-			searchFor(searchTerm, request.params.categoryIDs, shouldSearchArtists, shouldSearchProjects, filterFavoriteArtists, filterFavoriteProjects, response);
+			searchFor(searchTerm, request.params.categoryIDs, shouldSearchArtists, shouldSearchProjects, filterFavoriteArtists, filterFavoriteProjects, shouldReturnLocations, response);
 
 		} else {
 
@@ -314,7 +355,7 @@ Parse.Cloud.define("search", function(request, response) {
 								filterFavoriteProjects.push(favoriteProject);
 							}
 						}
-						searchFor(searchTerm, request.params.categoryIDs, shouldSearchArtists, shouldSearchProjects, filterFavoriteArtists, filterFavoriteProjects, response);
+						searchFor(searchTerm, request.params.categoryIDs, shouldSearchArtists, shouldSearchProjects, filterFavoriteArtists, filterFavoriteProjects, shouldReturnLocations, response);
 					}
 				},
 				error: function(error) {
