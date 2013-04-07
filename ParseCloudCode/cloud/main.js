@@ -58,37 +58,65 @@ Parse.Cloud.define("setFavorite", function(request, response) {
 	
 });
 
+function saveSearchItem(searchableObject, searchableObjectClassName, searchableObjectSearchableAttributes) {
+
+	// Set up SearchItem query
+	var SearchItem = Parse.Object.extend("SearchItem");
+	var query = new Parse.Query(SearchItem);
+	query.equalTo(searchableObjectClassName.toLowerCase(), searchableObject);
+
+	// Execute SearchItem query
+	console.log("Querying for existing SearchItem");
+	query.first({
+		success: function(searchItem) {
+
+			if (searchItem === undefined) {
+				console.log("Existing SearchItem not found");
+				// Create searchItem
+				searchItem = new SearchItem();
+				// Link searchItem to object
+				searchItem.set(searchableObjectClassName.toLowerCase(), searchableObject);
+			} else {
+				console.log("Existing SearchItem found - " + searchItem);
+			}
+
+			// Set up searchText
+			var searchText = "";
+			for (var i=0; i<searchableObjectSearchableAttributes.length; i++) {
+				var searchableAttribute = searchableObjectSearchableAttributes[i];
+				console.log("Adding searchableAttribute " + searchableAttribute + " : " + searchableObject.get(searchableAttribute) + " to searchable text");
+				searchText = searchText + " " + searchableObject.get(searchableAttribute);
+			}
+			
+			// Save searchItem with updated searchText
+			console.log("Saving SearchItem with searchable text " + searchText);
+			searchItem.save({
+				text: searchText
+			}, {
+				success: function(searchItem) {
+					console.log("SearchItem saved - " + searchItem);
+				},
+				error: function(searchItem, error) {
+					throw "Error saving SearchItem for " + searchableObjectClassName + " with id " + searchableObject.id + " while saving matching SearchItem - [" + error.code + " : " + error.message + "]";
+				}
+			});
+
+		},
+		error: function(error) {
+			throw "Error saving SearchItem for " + searchableObjectClassName + " with id " + searchableObject.id + " while looking for matching SearchItem - [" + error.code + " : " + error.message + "]";
+		}
+	});
+
+}
+
 // Artist
-// - name
-// - bio
-// - statement
+// Searchable text should include "name", "bio", "statement"
 Parse.Cloud.afterSave("Artist", function(request) {
-//   query = new Parse.Query("SearchItem");
-//   query.get(request.object.get("artist").id, {
-//     success: function(searchItem) {
-//       searchItem.text = 
-//       post.increment("comments");
-//       post.save();
-//     },
-//     error: function(error) {
-//       throw "Got an error " + error.code + " : " + error.message;
-//     }
-//   });
+	saveSearchItem(request.object, "Artist", ["name", "bio", "statement"]);
 });
 
 // Project
-// - title
-// - description
+// Searchable text should include "title", "description"
 Parse.Cloud.afterSave("Project", function(request) {
-//   query = new Parse.Query("SearchItem");
-//   query.get(request.object.get("artist").id, {
-//     success: function(searchItem) {
-//       searchItem.text = 
-//       post.increment("comments");
-//       post.save();
-//     },
-//     error: function(error) {
-//       throw "Got an error " + error.code + " : " + error.message;
-//     }
-//   });
+	saveSearchItem(request.object, "Project", ["title", "description"]);
 });
