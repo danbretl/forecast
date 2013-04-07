@@ -50,17 +50,17 @@
     [query findObjectsInBackgroundWithBlock:block];
 }
 
-- (void)getSearchResultsForTerm:(NSString *)searchTerm includeProjects:(BOOL)searchProjects andArtists:(BOOL)searchArtists inBackgroundWithBlock:(PFArrayResultBlock)block {
-    PFQuery * query = [PFQuery queryWithClassName:@"SearchItem"];
-    if (!(searchProjects && searchArtists)) {
-        if (searchProjects) {
-            [query whereKeyExists:@"project"];
-        } else if (searchArtists) {
-            [query whereKeyExists:@"artist"];
-        }
-    }
-    [query whereKey:@"text" containsString:[searchTerm.lowercaseString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    [query findObjectsInBackgroundWithBlock:block];
+- (void)getSearchResultsForTerm:(NSString *)searchTerm includeProjects:(BOOL)searchProjects andArtists:(BOOL)searchArtists favoritesOnly:(BOOL)favoritesOnly inCategoriesWithCategoryIDs:(NSArray *)categoryIDs inBackgroundWithBlock:(PFArrayResultBlock)block {
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    parameters[@"term"] = searchTerm;
+    NSMutableArray * searchClasses = [NSMutableArray array];
+    if (searchProjects) [searchClasses addObject:@"Project"];
+    if (searchArtists)  [searchClasses addObject:@"Artist"];
+    parameters[@"classes"] = searchClasses;
+    parameters[@"favoritesOnly"] = @(favoritesOnly);
+    if (categoryIDs.count > 0) parameters[@"categoryIDs"] = categoryIDs;
+    
+    [PFCloud callFunctionInBackground:@"search" withParameters:parameters block:block];
 }
 
 - (void)getLocationsForProjectWithID:(NSString *)projectID inBackgroundWithBlock:(PFArrayResultBlock)block {
