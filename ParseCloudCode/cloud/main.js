@@ -87,6 +87,7 @@ function saveSearchItem(searchableObject, searchableObjectClassName, searchableO
 				console.log("Adding searchableAttribute " + searchableAttribute + " : " + searchableObject.get(searchableAttribute) + " to searchable text");
 				searchText = searchText + " " + searchableObject.get(searchableAttribute);
 			}
+			searchText = searchText.toLowerCase();
 			
 			// Save searchItem with updated searchText
 			console.log("Saving SearchItem with searchable text " + searchText);
