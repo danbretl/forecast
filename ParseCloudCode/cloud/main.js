@@ -195,14 +195,15 @@ function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects,
 	var shouldSearchText = !(term === undefined || term.length == 0);
 	var shouldFilterArtists  = !(filterFavoriteArtists  === undefined);
 	var shouldFilterProjects = !(filterFavoriteProjects === undefined);
+	var shouldSearchProjectsByArtists = shouldSearchProjects && ((shouldReturnLocations && shouldSearchText) || (shouldFilterArtists && filterFavoriteArtists.length > 0));
 	shouldSearchArtists  = shouldSearchArtists  && (!shouldFilterArtists  || filterFavoriteArtists.length  > 0);
 	shouldSearchProjects = shouldSearchProjects && (!shouldFilterProjects || filterFavoriteProjects.length > 0);
-	var shouldSearchAll = shouldSearchArtists && shouldSearchProjects;
 
 	var SearchItem = Parse.Object.extend("SearchItem");
 	var querySearch;
 	var querySearchArtist;
-	var querySearchProject;
+	var querySearchProjectDirect;
+	var querySearchProjectByArtist;
 	
 	if (shouldSearchArtists) {
 		querySearchArtist = new Parse.Query(SearchItem);
@@ -215,42 +216,51 @@ function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects,
 			querySearchArtist.contains("text", term);
 		}
 	}
+
 	if (shouldSearchProjects) {
-		var querySearchProjectDirect = new Parse.Query(SearchItem);
-		if (shouldFilterProjects) {
-			querySearchProjectDirect.containedIn("project", filterFavoriteProjects);
-		}
+		querySearchProjectDirect = new Parse.Query(SearchItem);
+		querySearchProjectDirect.equalTo("type", "Project");
+		querySearchProjectDirect.exists("project");
 		if (shouldSearchText) {
 			querySearchProjectDirect.contains("text", term);
 		}
-		var querySearchProjectForFavoriteArtists;
-		if (shouldFilterArtists && filterFavoriteArtists.length > 0) {
-			console.log("shouldFilterArtists && filterFavoriteArtists.length > 0");
-			querySearchProjectForFavoriteArtists = new Parse.Query(SearchItem);
-			if (shouldSearchText) {
-				var Artist = Parse.Object.extend("Artist");
-				var queryArtistName = new Parse.Query(Artist);
-				queryArtistName.contains("nameLowercase", term);
-				querySearchProjectForFavoriteArtists.matchesQuery("artist", queryArtistName);
-			}
-			querySearchProjectForFavoriteArtists.containedIn("artist", filterFavoriteArtists);
+		if (shouldFilterProjects) {
+			querySearchProjectDirect.containedIn("project", filterFavoriteProjects);
 		}
-		if (querySearchProjectForFavoriteArtists === undefined) {
-			querySearchProject = querySearchProjectDirect;
-		} else {
-			querySearchProject = Parse.Query.or(querySearchProjectDirect, querySearchProjectForFavoriteArtists);
-		}
-		querySearchProject.equalTo("type", "Project");
-		querySearchProject.exists("project");
 	}
 
-	if (shouldSearchAll) {
-		querySearch = Parse.Query.or(querySearchArtist, querySearchProject);
+	if (shouldSearchProjectsByArtists) {
+		querySearchProjectByArtist = new Parse.Query(SearchItem);
+		querySearchProjectByArtist.equalTo("type", "Project");
+		querySearchProjectByArtist.exists("project");
+		if (shouldSearchText) {
+			var Artist = Parse.Object.extend("Artist");
+			var queryArtistName = new Parse.Query(Artist);
+			queryArtistName.contains("nameLowercase", term);
+			querySearchProjectByArtist.matchesQuery("artist", queryArtistName);
+		}
+		if (shouldFilterArtists) {
+			querySearchProjectByArtist.containedIn("artist", filterFavoriteArtists);
+		}
+	}
+
+	if (shouldSearchArtists && shouldSearchProjects && shouldSearchProjectsByArtists) {
+		querySearch = Parse.Query.or(querySearchArtist, querySearchProjectDirect, querySearchProjectByArtist);
 	} else {
-		if (shouldSearchArtists) {
-			querySearch = querySearchArtist;
-		} else if (shouldSearchProjects) {
-			querySearch = querySearchProject;
+		if (shouldSearchArtists && shouldSearchProjects) {
+			querySearch = Parse.Query.or(querySearchArtist, querySearchProjectDirect);
+		} else if (shouldSearchArtists && shouldSearchProjectsByArtists) {
+			querySearch = Parse.Query.or(querySearchArtist, querySearchProjectByArtist);
+		} else if (shouldSearchProjects && shouldSearchProjectsByArtists) {
+			querySearch = Parse.Query.or(querySearchProjectDirect, querySearchProjectByArtist);
+		} else {
+			if (shouldSearchArtists) {
+				querySearch = querySearchArtist;
+			} else if (shouldSearchProjects) {
+				querySearch = querySearchProjectDirect;
+			} else if (shouldSearchProjectsByArtists) {
+				querySearch = querySearchProjectByArtist;
+			}
 		}
 	}
 
@@ -265,25 +275,35 @@ function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects,
 		querySearch.containedIn("categories", categories);
 	}
 
-	if (shouldSearchArtists) {
-		querySearch.include("artist");
-	}
-	if (shouldSearchProjects) {
-		querySearch.include("project");
-	}
+	querySearch.include("artist");
+	querySearch.include("project");
 
 	querySearch.find({
-		success: function(results) {
+		success: function(searchItems) {
 			if (!shouldReturnLocations) {
-				response.success(results);
+				response.success(searchItems);
 			} else {
-				// ...
-				// ...
-				// ...
-				response.success(results);
-				// ...
-				// ...
-				// ...
+				var Location = Parse.Object.extend("Location");
+				var queryLocation = new Parse.Query(Location);
+				var projects = new Array();
+				for (var s=0; s<searchItems.length; s++) {
+					var searchItem = searchItems[s];
+					if (searchItem.get("type") === "Project") {
+						projects.push(searchItem.get("project"));
+					}
+				}
+				queryLocation.containedIn("project", projects);
+				queryLocation.include("project");
+				queryLocation.include("project.artist");
+				queryLocation.include("project.category");
+				queryLocation.find({
+					success: function(locations) {
+						response.success(locations);
+					},
+					error: function(error) {
+						response.error("querying for locations - [" + error.code + " : " + error.message + "]");
+					}
+				});
 			}
 		},
 		error: function(error) {

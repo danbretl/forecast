@@ -20,6 +20,7 @@
     if (self) {
         self.shouldSearchProjects = YES;
         self.shouldSearchArtists = YES;
+        self.shouldReturnLocations = NO;
     }
     return self;
 }
@@ -104,10 +105,24 @@
             }
             categoryIDs = [[self.categories objectsAtIndexes:indexes] valueForKey:@"objectId"];
         }
-        [[FCParseManager sharedInstance] getSearchResultsForTerm:self.searchTextField.text includeProjects:self.shouldSearchProjects andArtists:self.shouldSearchArtists favoritesOnly:favoritesOnly inCategoriesWithCategoryIDs:categoryIDs inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            NSLog(@"[FCParseManager sharedInstance] getSearchResultsForTerm:%@ includeProjects:%d andArtists:%d favoritesOnly:%d inCategoriesWithCategoryIDs:%@", self.searchTextField.text, self.shouldSearchProjects, self.shouldSearchArtists, favoritesOnly, categoryIDs);
-            NSLog(@"  objects = %@", objects);
-            NSLog(@"  error   = %@", error);
+        [[FCParseManager sharedInstance] getSearchResultsForTerm:self.searchTextField.text includeProjects:self.shouldSearchProjects andArtists:self.shouldSearchArtists favoritesOnly:favoritesOnly inCategoriesWithCategoryIDs:categoryIDs returnLocations:self.shouldReturnLocations inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSLog(@"[FCParseManager sharedInstance] getSearchResultsForTerm:%@ includeProjects:%d andArtists:%d favoritesOnly:%d inCategoriesWithCategoryIDs:%@ returnLocations:%d", self.searchTextField.text, self.shouldSearchProjects, self.shouldSearchArtists, favoritesOnly, categoryIDs, self.shouldReturnLocations);
+            if (!error) {
+                if (self.shouldReturnLocations) {
+                    NSLog(@"  %d Location objects returned", objects.count);
+                    for (PFObject * location in objects) {
+                        PFGeoPoint * coordinate = location[@"coordinate"];
+                        NSLog(@"    Location - p(%@) a(%@) - (%f,%f)", location[@"project"][@"title"], location[@"project"][@"artist"][@"name"], coordinate.latitude, coordinate.longitude);
+                    }
+                } else {
+                    NSLog(@"  %d SearchItem objects returned", objects.count);
+                    for (PFObject * searchItem in objects) {
+                        NSLog(@"    %@ - p(%@) a(%@)", searchItem[@"type"], searchItem[@"project"][@"title"] ? searchItem[@"project"][@"title"] : @"", searchItem[@"artist"][@"name"] ? searchItem[@"artist"][@"name"] : @"");
+                    }                    
+                }
+            } else {
+                NSLog(@"  Error %@", error);
+            }
             if ([self.delegate respondsToSelector:@selector(searchViewController:didFindObjects:error:)]) {
                 [self.delegate searchViewController:self didFindObjects:objects error:error];
             }

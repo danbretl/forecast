@@ -47,6 +47,7 @@
         FCSearchViewController * searchViewController = segue.destinationViewController;
         searchViewController.shouldSearchArtists = YES;
         searchViewController.shouldSearchProjects = YES;
+        searchViewController.shouldReturnLocations = YES;
     }
 }
 

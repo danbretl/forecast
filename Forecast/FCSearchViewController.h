@@ -15,6 +15,7 @@
 @property (nonatomic) NSArray * categories;
 @property (nonatomic) BOOL shouldSearchProjects;
 @property (nonatomic) BOOL shouldSearchArtists;
+@property (nonatomic) BOOL shouldReturnLocations;
 - (void) searchForObjects;
 
 @property (nonatomic, weak) IBOutlet UITextField * searchTextField;
