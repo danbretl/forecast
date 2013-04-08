@@ -29,8 +29,11 @@
     // Customize appearance
     // Navigation Bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bar_bg_str"] forBarMetrics:UIBarMetricsDefault];
+    self.titleNormal = @"Forecast";
+    self.titleSearchVisible = @"Search";
+    self.titleSearchActive = @"Search Results";
     // Search Container View
-    self.searchContainerViewVisibleAlpha = 0.75;
+    self.searchContainerViewVisibleAlpha = 0.85;
     self.searchContainerViewHiddenAlpha = 0.0;
     self.searchContainerViewVisibleOriginY = 0;
     self.searchContainerViewHiddenOriginY = self.searchContainerViewVisibleOriginY - self.searchContainerView.frame.size.height;
@@ -174,7 +177,16 @@
     switch (specialButton) {
             
         case UIBarButtonItemSpecialSearch:
-            [self setIsSearchVisible:!self.isSearchVisible animated:YES];
+            if (self.isSearchVisible && self.searchViewController.isModifiedForSearch) {
+                if (self.searchViewController.isReadyForSearch) {
+                    [self.searchViewController searchForObjects];
+                } else {
+                    [self searchViewControllerDidResetAll:self.searchViewController];
+                    [self setIsSearchVisible:!self.isSearchVisible animated:YES];
+                }
+            } else {
+                [self setIsSearchVisible:!self.isSearchVisible animated:YES];
+            }
             break;
             
         case UIBarButtonItemSpecialStar:
@@ -195,6 +207,30 @@
     // ...
 }
 
+- (void)setTitleNormal:(NSString *)titleNormal {
+    _titleNormal = titleNormal;
+    [self setTitleForState];
+}
+
+- (void)setTitleSearchVisible:(NSString *)titleSearchVisible {
+    _titleSearchVisible = titleSearchVisible;
+    [self setTitleForState];
+}
+
+- (void)setTitleSearchActive:(NSString *)titleSearchActive {
+    _titleSearchActive = titleSearchActive;
+    [self setTitleForState];
+}
+
+- (void)setTitleForState {
+    self.navigationItem.title = self.isSearchVisible ? self.titleSearchVisible : (self.isSearchActive ? self.titleSearchActive : self.titleNormal);
+}
+
+- (void)setIsSearchActive:(BOOL)isSearchActive {
+    _isSearchActive = isSearchActive;
+    [self setTitleForState];
+}
+
 - (void)setIsSearchVisible:(BOOL)isSearchVisible {
     [self setIsSearchVisible:isSearchVisible animated:NO];
 }
@@ -212,6 +248,7 @@
         CGRect searchContainerViewFrame = self.searchContainerView.frame;
         searchContainerViewFrame.origin.y = shouldShowSearch ? self.searchContainerViewVisibleOriginY : self.searchContainerViewHiddenOriginY;
         self.searchContainerView.frame = searchContainerViewFrame;
+        [self setTitleForState];
     };
     void(^firstResponderBlock)(void) = ^{
         if (shouldShowSearch) {
@@ -269,10 +306,18 @@
 #pragma mark - FCSearchViewControllerDelegate
 
 - (void)searchViewControllerWillFindObjects:(FCSearchViewController *)searchViewController {
-    // ...
+// ...
 }
 
 - (void)searchViewController:(FCSearchViewController *)searchViewController didFindObjects:(NSArray *)objects error:(NSError *)error {
+    // ...
+}
+
+- (BOOL)searchViewControllerShouldResetAll:(FCSearchViewController *)searchViewController {
+    return YES;
+}
+
+- (void)searchViewControllerDidResetAll:(FCSearchViewController *)searchViewController {
     // ...
 }
 

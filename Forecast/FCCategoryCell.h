@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern const CGFloat kCategoryCellPaddingBottomToImageView;
+
 @interface FCCategoryCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet PFImageView * categoryImageView;

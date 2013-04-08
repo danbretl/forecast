@@ -277,7 +277,9 @@ function searchFor(term, categoryIDs, shouldSearchArtists, shouldSearchProjects,
 
 	querySearch.include("artist");
 	querySearch.include("project");
-
+	querySearch.include("project.artist");
+	querySearch.include("project.category");
+	
 	querySearch.find({
 		success: function(searchItems) {
 			if (!shouldReturnLocations) {

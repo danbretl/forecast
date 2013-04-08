@@ -14,7 +14,10 @@
 
 @interface FCMapViewController ()
 - (void)addLocationsToMap:(NSArray *)locations;
+- (void)removeAllLocationsFromMap;
 - (void)zoomToMinnesotaAnimated:(BOOL)animated; // Hardcoded map region
+- (void)zoomToFitAnnotations:(NSArray *)locations animated:(BOOL)animated;
+@property (nonatomic) NSArray * locationsSearchResults;
 @end
 
 @implementation FCMapViewController
@@ -22,20 +25,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.titleNormal = @"Map";
+    self.titleSearchVisible = @"Search";
+    self.titleSearchActive = @"Search Results";
+    
     [self setRightBarButtonItemToSearchButton];
     
     if (self.locations.count == 0) {
         [[FCParseManager sharedInstance] getLocationsForProjectWithID:nil inBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            NSMutableArray * objectsLocal = [NSMutableArray array];
-            for (PFObject * object in objects) {
-                FCLocation * location = [FCLocation locationFromPFLocationObject:object];
-                [objectsLocal addObject:location];
-//                NSLog(@"Added location object %@", location);
-            }
-            self.locations = objectsLocal;
+            self.locations = [FCLocation locationsFromPFLocationObjects:objects];
             [self addLocationsToMap:self.locations];
-            [self zoomToMinnesotaAnimated:YES];
+            [self zoomToFitAnnotations:self.locations animated:YES];
         }];
+    } else {
+        [self zoomToFitAnnotations:self.locations animated:YES];
     }
     
 }
@@ -55,8 +58,31 @@
     [self.mapView addAnnotations:locations];
 }
 
+- (void)removeAllLocationsFromMap {
+    [self.mapView removeAnnotations:self.mapView.annotations];
+}
+
 - (void)zoomToMinnesotaAnimated:(BOOL)animated {
     [self.mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(46.072042, -94.010513), MKCoordinateSpanMake(5.594572, 7.031250)) animated:animated];
+}
+
+- (void) zoomToFitAnnotations:(NSArray *)locations animated:(BOOL)animated {
+    double zoomRectMinimumLengthMeters = 2000.0;
+    MKMapRect zoomRect = MKMapRectNull;
+    for (id<MKAnnotation> location in locations) {
+        MKMapPoint mapPoint = MKMapPointForCoordinate(location.coordinate);
+        MKMapRect mapPointRect = MKMapRectMake(mapPoint.x, mapPoint.y, 0.1, 0.1);
+        zoomRect = MKMapRectUnion(zoomRect, mapPointRect);
+    }
+    MKCoordinateRegion coordinateRegionForZoomRect = MKCoordinateRegionForMapRect(zoomRect);
+    double pointsPerMeter = MKMapPointsPerMeterAtLatitude(coordinateRegionForZoomRect.center.latitude);
+    double zoomRectWidthMetersDifferenceFromMinimum  = zoomRect.size.width  / pointsPerMeter - zoomRectMinimumLengthMeters;
+    double zoomRectHeightMetersDifferenceFromMinimum = zoomRect.size.height / pointsPerMeter - zoomRectMinimumLengthMeters;
+    if (zoomRectWidthMetersDifferenceFromMinimum  < 0 ||
+        zoomRectHeightMetersDifferenceFromMinimum < 0) {
+        zoomRect = MKMapRectInset(zoomRect, zoomRectWidthMetersDifferenceFromMinimum, zoomRectHeightMetersDifferenceFromMinimum);
+    }
+    [self.mapView setVisibleMapRect:zoomRect animated:animated];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -91,6 +117,39 @@
     if (side == UIBarButtonItemSideRight) {
         [self setIsSearchVisible:!self.isSearchVisible animated:YES];
     }
+}
+
+#pragma mark - FCSearchViewControllerDelegate
+
+- (void)searchViewControllerWillFindObjects:(FCSearchViewController *)searchViewController {
+    [super searchViewControllerWillFindObjects:searchViewController];
+}
+
+- (void)searchViewController:(FCSearchViewController *)searchViewController didFindObjects:(NSArray *)objects error:(NSError *)error {
+    [super searchViewController:searchViewController didFindObjects:objects error:error];
+    self.isSearchActive = objects.count > 0;
+    if (objects.count > 0) {
+        self.locationsSearchResults = [FCLocation locationsFromPFLocationObjects:objects];
+        [self removeAllLocationsFromMap];
+        [self addLocationsToMap:self.locationsSearchResults];
+        [self zoomToFitAnnotations:self.locationsSearchResults animated:YES];
+        [self setIsSearchVisible:NO animated:YES];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"No matching results" message:@"We couldn't find any matching results for your search. Please adjust your search and try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
+}
+
+- (BOOL)searchViewControllerShouldResetAll:(FCSearchViewController *)searchViewController {
+    return [super searchViewControllerShouldResetAll:searchViewController] && YES;
+}
+
+- (void)searchViewControllerDidResetAll:(FCSearchViewController *)searchViewController {
+    [super searchViewControllerDidResetAll:searchViewController];
+    self.isSearchActive = NO;
+    self.locationsSearchResults = nil;
+    [self removeAllLocationsFromMap];
+    [self addLocationsToMap:self.locations];
+    [self zoomToFitAnnotations:self.locations animated:YES];
 }
 
 @end

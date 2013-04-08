@@ -13,5 +13,6 @@
 
 @property (nonatomic) NSArray * projects;
 @property (nonatomic, readonly) NSArray * objects;
+- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

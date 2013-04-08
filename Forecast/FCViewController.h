@@ -45,6 +45,11 @@ typedef enum {
 @property (nonatomic, weak, readonly) FCSearchViewController * searchViewController;
 @property (nonatomic) BOOL isSearchVisible; // Not animated
 - (void) setIsSearchVisible:(BOOL)shouldBeVisible animated:(BOOL)animated;
+@property (nonatomic) BOOL isSearchActive;
+
+@property (nonatomic, copy) NSString * titleNormal; // Title to show normally
+@property (nonatomic, copy) NSString * titleSearchVisible; // Title to show while search container is visible
+@property (nonatomic, copy) NSString * titleSearchActive; // Title to show while search is active (search results are being shown)
 
 @property (nonatomic) FCFavoritesController * favoritesController;
 

@@ -12,6 +12,7 @@
 @interface FCLocation : NSObject <MKAnnotation>
 
 + (FCLocation *) locationFromPFLocationObject:(PFObject *)pfLocationObject;
++ (NSArray *)locationsFromPFLocationObjects:(NSArray *)pfLocationObjects;
 
 @property (nonatomic, readonly) PFObject * project;
 

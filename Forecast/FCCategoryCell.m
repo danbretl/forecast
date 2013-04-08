@@ -9,6 +9,8 @@
 #import "FCCategoryCell.h"
 #import "PFImageView+Placeholder.h"
 
+const CGFloat kCategoryCellPaddingBottomToImageView = 26.0;
+
 @implementation FCCategoryCell
 
 - (void)awakeFromNib {

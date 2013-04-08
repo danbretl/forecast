@@ -20,6 +20,14 @@
     return location;
 }
 
++ (NSArray *)locationsFromPFLocationObjects:(NSArray *)pfLocationObjects {
+    NSMutableArray * locations = [NSMutableArray array];
+    for (PFObject * pfLocationObject in pfLocationObjects) {
+        [locations addObject:[self locationFromPFLocationObject:pfLocationObject]];
+    }
+    return locations;
+}
+
 - (PFObject *)project {
     return self.pfLocation[@"project"];
 }
