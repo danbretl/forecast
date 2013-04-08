@@ -568,9 +568,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		32063B2F166F1A1E00A43EED /* Residue */ = {
+		32063B2F166F1A1E00A43EED /* Forecast */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 32063B5F166F1A1E00A43EED /* Build configuration list for PBXNativeTarget "Residue" */;
+			buildConfigurationList = 32063B5F166F1A1E00A43EED /* Build configuration list for PBXNativeTarget "Forecast" */;
 			buildPhases = (
 				32063B2C166F1A1E00A43EED /* Sources */,
 				32063B2D166F1A1E00A43EED /* Frameworks */,
@@ -580,7 +580,7 @@
 			);
 			dependencies = (
 			);
-			name = Residue;
+			name = Forecast;
 			productName = Forecast;
 			productReference = 32063B30166F1A1E00A43EED /* Forecast.app */;
 			productType = "com.apple.product-type.application";
@@ -607,7 +607,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				32063B2F166F1A1E00A43EED /* Residue */,
+				32063B2F166F1A1E00A43EED /* Forecast */,
 			);
 		};
 /* End PBXProject section */
@@ -868,7 +868,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		32063B5F166F1A1E00A43EED /* Build configuration list for PBXNativeTarget "Residue" */ = {
+		32063B5F166F1A1E00A43EED /* Build configuration list for PBXNativeTarget "Forecast" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				32063B60166F1A1E00A43EED /* Debug */,
