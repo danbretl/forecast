@@ -44,11 +44,6 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self zoomToFitAnnotations:self.isSearchActive ? self.locationsSearchResults : self.locations animated:YES];
-}
-
 #pragma mark Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
