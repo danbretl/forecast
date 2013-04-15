@@ -16,7 +16,8 @@
 - (void)addLocationsToMap:(NSArray *)locations;
 - (void)removeAllLocationsFromMap;
 - (void)zoomToMinnesotaAnimated:(BOOL)animated; // Hardcoded map region
-- (void)zoomToFitAnnotations:(NSArray *)locations animated:(BOOL)animated;
+- (void)zoomToFitAnnotations:(NSArray *)locations animated:(BOOL)animated; // Uses hardcoded constants for minimumZoomRectLengthInMeters and edgePaddingInPoints
+- (void)zoomToFitAnnotations:(NSArray *)locations minimumZoomRectLengthInMeters:(double)minimumZoomRectLengthInMeters edgePaddingInPoints:(UIEdgeInsets)edgePaddingInPoints animated:(BOOL)animated;
 @property (nonatomic) NSArray * locationsSearchResults;
 @end
 
@@ -43,6 +44,11 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self zoomToFitAnnotations:self.isSearchActive ? self.locationsSearchResults : self.locations animated:YES];
+}
+
 #pragma mark Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -66,23 +72,44 @@
     [self.mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(46.072042, -94.010513), MKCoordinateSpanMake(5.594572, 7.031250)) animated:animated];
 }
 
-- (void) zoomToFitAnnotations:(NSArray *)locations animated:(BOOL)animated {
-    double zoomRectMinimumLengthMeters = 2000.0;
+- (void)zoomToFitAnnotations:(NSArray *)locations animated:(BOOL)animated {
+    [self zoomToFitAnnotations:locations minimumZoomRectLengthInMeters:2000.0 edgePaddingInPoints:UIEdgeInsetsMake(44.0, 44.0, 44.0, 44.0) animated:animated];
+}
+
+- (void)zoomToFitAnnotations:(NSArray *)locations minimumZoomRectLengthInMeters:(double)minimumZoomRectLengthInMeters edgePaddingInPoints:(UIEdgeInsets)edgePaddingInPoints animated:(BOOL)animated {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+
+    NSLog(@"  minimumZoomRectLengthInMeters = %f", minimumZoomRectLengthInMeters);
     MKMapRect zoomRect = MKMapRectNull;
     for (id<MKAnnotation> location in locations) {
         MKMapPoint mapPoint = MKMapPointForCoordinate(location.coordinate);
         MKMapRect mapPointRect = MKMapRectMake(mapPoint.x, mapPoint.y, 0.1, 0.1);
         zoomRect = MKMapRectUnion(zoomRect, mapPointRect);
     }
+    NSLog(@"  zoomRect = %@", NSStringFromCGRect(CGRectMake(zoomRect.origin.x, zoomRect.origin.y, zoomRect.size.width, zoomRect.size.height)));
     MKCoordinateRegion coordinateRegionForZoomRect = MKCoordinateRegionForMapRect(zoomRect);
+    NSLog(@"  coordinateRegionForZoomRect = (%f, %f) (%f, %f)", coordinateRegionForZoomRect.center.latitude, coordinateRegionForZoomRect.center.longitude, coordinateRegionForZoomRect.span.latitudeDelta, coordinateRegionForZoomRect.span.longitudeDelta);
     double pointsPerMeter = MKMapPointsPerMeterAtLatitude(coordinateRegionForZoomRect.center.latitude);
-    double zoomRectWidthMetersDifferenceFromMinimum  = zoomRect.size.width  / pointsPerMeter - zoomRectMinimumLengthMeters;
-    double zoomRectHeightMetersDifferenceFromMinimum = zoomRect.size.height / pointsPerMeter - zoomRectMinimumLengthMeters;
+    NSLog(@"  pointsPerMeter = %f", pointsPerMeter);
+    double zoomRectWidthMetersDifferenceFromMinimum  = zoomRect.size.width  / pointsPerMeter - minimumZoomRectLengthInMeters;
+    NSLog(@"  zoomRectWidthMetersDifferenceFromMinimum = %f", zoomRectWidthMetersDifferenceFromMinimum);
+    double zoomRectHeightMetersDifferenceFromMinimum = zoomRect.size.height / pointsPerMeter - minimumZoomRectLengthInMeters;
+    NSLog(@"  zoomRectHeightMetersDifferenceFromMinimum = %f", zoomRectWidthMetersDifferenceFromMinimum);
+    
+    MKMapRect zoomRectAdjusted = zoomRect;
+    
     if (zoomRectWidthMetersDifferenceFromMinimum  < 0 ||
         zoomRectHeightMetersDifferenceFromMinimum < 0) {
-        zoomRect = MKMapRectInset(zoomRect, zoomRectWidthMetersDifferenceFromMinimum, zoomRectHeightMetersDifferenceFromMinimum);
+        zoomRectAdjusted = MKMapRectInset(zoomRect, zoomRectWidthMetersDifferenceFromMinimum, zoomRectHeightMetersDifferenceFromMinimum);
+        NSLog(@"  zoomRect(adjustedToMin) = %@", NSStringFromCGRect(CGRectMake(zoomRectAdjusted.origin.x, zoomRectAdjusted.origin.y, zoomRectAdjusted.size.width, zoomRectAdjusted.size.height)));
     }
-    [self.mapView setVisibleMapRect:zoomRect animated:animated];
+    
+    NSLog(@"  edgePaddingInPoints = %@", NSStringFromUIEdgeInsets(edgePaddingInPoints));
+    zoomRectAdjusted = [self.mapView mapRectThatFits:zoomRectAdjusted edgePadding:edgePaddingInPoints];
+    NSLog(@"  zoomRect(adjustedToFitWithPadding) = %@", NSStringFromCGRect(CGRectMake(zoomRectAdjusted.origin.x, zoomRectAdjusted.origin.y, zoomRectAdjusted.size.width, zoomRectAdjusted.size.height)));
+
+    [self.mapView setVisibleMapRect:zoomRectAdjusted animated:animated];
+    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
